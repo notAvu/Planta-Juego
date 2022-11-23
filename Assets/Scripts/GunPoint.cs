@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class GunPoint : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject projectilePrefab;
-    //estas variables se asignan asumiendo que ambas semillas tienen las mismas propiedades fisicas para el lanzamiento
-    [SerializeField]
-    private float launchForce = 15f;
-
-
+    #region referencias de escena
     [SerializeField]
     private Camera mainCamera;
 
@@ -18,15 +12,28 @@ public class GunPoint : MonoBehaviour
     private Transform gunHolder;
     [SerializeField]
     private Transform gunPivot;
+    #endregion
+    #region 
+    [SerializeField]
+    private KeyCode launchButton;
 
-    Vector3 distanceVector;
+    [SerializeField]
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private float launchForce; //Valor de ejemplo 500
+    private Vector3 distanceVector;
+    #endregion
+    #region eventos de Unity
     private void Update()
     {
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(launchButton)) { 
             LaunchProjectile();
+        }
         RotateGun(mousePosition);
     }
+    #endregion
+    #region Metodos auxiliares
     /// <summary>
     /// Rota el arma/canon/tirachinas para que la punta mire al puntero del raton
     /// </summary>
@@ -34,17 +41,18 @@ public class GunPoint : MonoBehaviour
     private void RotateGun(Vector3 targetPoint)
     {
         distanceVector = targetPoint - gunPivot.position;
-        Debug.Log(distanceVector.x);
         float angleDeg = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
         gunPivot.rotation = Quaternion.AngleAxis(angleDeg, Vector3.forward);
     }
-
+    /// <summary>
+    /// Instancia un proyectiil desde la posicion del eje de rotacion del lanzador y lo dispara aplicandole una fuerza igual a <see cref="launchForce"/>
+    /// </summary>
     private void LaunchProjectile()
     {
         GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity);
         Vector2 direction = distanceVector.normalized;
         projectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
         Debug.Log($"{direction.x}x {direction.y}y");
-
     }
+    #endregion
 }

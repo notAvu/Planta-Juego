@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f34374bb16491f43b7313c05aaa88c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  launchButton: 122
   projectilePrefab: {fileID: 6681376261613921506, guid: 7f82e093b80c16349a584253230b9ae7, type: 3}
   launchForce: 500
   mainCamera: {fileID: 519420031}
