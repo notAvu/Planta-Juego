@@ -16,10 +16,16 @@ public class GunPoint : MonoBehaviour
     #region 
     [SerializeField]
     private KeyCode launchButton;
-
+    #endregion
+    #region
+    #region Can this be translated to the projectile's script?
     [SerializeField]
     private GameObject projectilePrefab;
+
+    private Rigidbody2D projectileRb;
     private float projectileMass;
+    private LineRenderer lineRenderer;
+    #endregion
     [SerializeField]
     private float launchForce; //Valor de ejemplo 500
     private Vector3 distanceVector;
@@ -27,12 +33,21 @@ public class GunPoint : MonoBehaviour
     #region eventos de Unity
     private void Start()
     {
-        
+        projectileRb = projectilePrefab.GetComponent<Rigidbody2D>();
+        lineRenderer = GetComponent<LineRenderer>();
+        projectileMass = projectilePrefab.gameObject.GetComponent<Rigidbody2D>().mass;
     }
     private void Update()
     {
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKeyDown(launchButton)) { 
+        if (Input.GetKey(launchButton))
+        {
+            lineRenderer.enabled = true;
+            DrawProjectileTrajectory();
+        }
+        if (Input.GetKeyUp(launchButton))
+        {
+            lineRenderer.enabled = false;
             LaunchProjectile();
         }
         RotateGun(mousePosition);
@@ -58,23 +73,30 @@ public class GunPoint : MonoBehaviour
         Vector2 direction = distanceVector.normalized;
         projectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
 
-        projectileMass = projectile.GetComponent<Rigidbody2D>().mass;
         //Debug.Log($"{direction.x}x {direction.y}y");
     }
     #endregion
-    #region dibujar trayectoria
+    #region Dibujar trayectoria
     private void DrawProjectileTrajectory()
     {
-        List<Vector2> linePoints = new List<Vector2>();
-        int steps = 20;
-        float stepInterval = 0.1f;
-        float velocity = (launchForce / projectileMass) + Time.fixedDeltaTime;
-        Vector2 nextposition; 
-        for(int i = 0; i< steps; i++)
+        //List<Vector2> linePoints = new List<Vector2>();
+        float simulationDuration = 2f;
+        float stepInterval = 0.05f;
+        int steps = (int)(simulationDuration / stepInterval);
+        lineRenderer.positionCount = steps;
+        float velocity = (launchForce / projectileMass) * Time.fixedDeltaTime;
+        float drag = Mathf.Pow(velocity, 2) * projectileRb.drag;
+        //velocity = velocity * (1 - Time.fixedDeltaTime * drag);
+        Debug.Log(projectileMass);
+        Vector3 nextposition;
+        for (int i = 0; i < steps; i++)
         {
-            nextposition = gameObject.transform.position + distanceVector.normalized * velocity * stepInterval * i; 
-            //nextposition = Physics2D.gravity.y
+            nextposition = gameObject.transform.position + distanceVector.normalized * velocity * stepInterval * i;
+            float gravity = Physics2D.gravity.y / 2 * Mathf.Pow(i * stepInterval, 2);
+            nextposition.y += gravity;
+            lineRenderer.SetPosition(i, nextposition);
         }
+        //return linePoints;
     }
     #endregion
 }
