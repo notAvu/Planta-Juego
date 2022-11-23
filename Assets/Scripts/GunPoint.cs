@@ -19,11 +19,16 @@ public class GunPoint : MonoBehaviour
 
     [SerializeField]
     private GameObject projectilePrefab;
+    private float projectileMass;
     [SerializeField]
     private float launchForce; //Valor de ejemplo 500
     private Vector3 distanceVector;
     #endregion
     #region eventos de Unity
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -52,7 +57,24 @@ public class GunPoint : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity);
         Vector2 direction = distanceVector.normalized;
         projectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
-        Debug.Log($"{direction.x}x {direction.y}y");
+
+        projectileMass = projectile.GetComponent<Rigidbody2D>().mass;
+        //Debug.Log($"{direction.x}x {direction.y}y");
+    }
+    #endregion
+    #region dibujar trayectoria
+    private void DrawProjectileTrajectory()
+    {
+        List<Vector2> linePoints = new List<Vector2>();
+        int steps = 20;
+        float stepInterval = 0.1f;
+        float velocity = (launchForce / projectileMass) + Time.fixedDeltaTime;
+        Vector2 nextposition; 
+        for(int i = 0; i< steps; i++)
+        {
+            nextposition = gameObject.transform.position + distanceVector.normalized * velocity * stepInterval * i; 
+            //nextposition = Physics2D.gravity.y
+        }
     }
     #endregion
 }
