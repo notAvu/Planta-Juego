@@ -80,8 +80,8 @@ public class GunPoint : MonoBehaviour
     private void DrawProjectileTrajectory()
     {
         //List<Vector2> linePoints = new List<Vector2>();
-        float simulationDuration = 2f;
-        float stepInterval = 0.05f;
+        float simulationDuration = 3f;
+        float stepInterval = 0.01f;
         int steps = (int)(simulationDuration / stepInterval);
         lineRenderer.positionCount = steps;
         float velocity = (launchForce / projectileMass) * Time.fixedDeltaTime;
@@ -95,8 +95,19 @@ public class GunPoint : MonoBehaviour
             float gravity = Physics2D.gravity.y / 2 * Mathf.Pow(i * stepInterval, 2);
             nextposition.y += gravity;
             lineRenderer.SetPosition(i, nextposition);
+            if (LineCollided(nextposition))
+            {
+                steps = i;
+                lineRenderer.positionCount = steps;
+            }
         }
         //return linePoints;
+    }
+    private bool LineCollided(Vector3 position)
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, 0.1f);
+
+        return hits.Length>0;
     }
     #endregion
 }
