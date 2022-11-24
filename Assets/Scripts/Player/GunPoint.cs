@@ -20,7 +20,7 @@ public class GunPoint : MonoBehaviour
     private KeyCode switchProjectileButton;
     #endregion
     #region
-    #region Can this be translated to the projectile's script?
+    #region variables prefabs proyectiles
     [SerializeField]
     private GameObject[] availablePrefabs;
 
@@ -82,6 +82,9 @@ public class GunPoint : MonoBehaviour
     }
     #endregion
     #region Dibujar trayectoria
+    /// <summary>
+    /// Simula la trayectoria del proyectil mostrando la trayectoria que va a seguir con el line renderer
+    /// </summary>
     private void DrawProjectileTrajectory()
     {
         float simulationDuration = 3f;
@@ -119,6 +122,9 @@ public class GunPoint : MonoBehaviour
     }
     #endregion
     #region seleccionar proyectil
+    /// <summary>
+    /// Cambia el proyectil a lanzar al siguiente del array de pryectiles
+    /// </summary>
     private void SwitchProjectile()
     {
         selectedPrefabIndex++;
