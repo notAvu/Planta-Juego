@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 38
+  controlID: 17
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -317,22 +317,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/Player
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/Player
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Videojuegos\Unity Projects\PlantaJuego
+  m_LastProjectPath: C:\Users\Mudasus\Documents\GitHub\Planta-Juego
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 625f0000
-    m_LastClickedID: 24418
-    m_ExpandedIDs: 00000000505f000000ca9a3b
+    m_SelectedIDs: 22920000
+    m_LastClickedID: 37410
+    m_ExpandedIDs: 00000000dc910000e891000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -360,7 +360,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000505f0000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -488,9 +488,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 22920000
       m_LastClickedID: 0
-      m_ExpandedIDs: 28fbffff
+      m_ExpandedIDs: 40c5ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
