@@ -16,14 +16,16 @@ public class GunPoint : MonoBehaviour
     #region 
     [SerializeField]
     private KeyCode launchButton;
+    [SerializeField]
+    private KeyCode switchProjectileButton;
     #endregion
     #region
     #region Can this be translated to the projectile's script?
     [SerializeField]
-    private GameObject projectilePrefab;
+    private GameObject[] availablePrefabs;
 
-    private Rigidbody2D projectileRb;
-    private float projectileMass;
+    private int selectedPrefabIndex;
+
     private LineRenderer lineRenderer;
     #endregion
     [SerializeField]
@@ -33,9 +35,8 @@ public class GunPoint : MonoBehaviour
     #region eventos de Unity
     private void Start()
     {
-        projectileRb = projectilePrefab.GetComponent<Rigidbody2D>();
         lineRenderer = GetComponent<LineRenderer>();
-        projectileMass = projectilePrefab.gameObject.GetComponent<Rigidbody2D>().mass;
+        selectedPrefabIndex = 0;
     }
     private void Update()
     {
@@ -50,10 +51,14 @@ public class GunPoint : MonoBehaviour
             lineRenderer.enabled = false;
             LaunchProjectile();
         }
+        if (Input.GetKeyDown(switchProjectileButton))
+        {
+            SwitchProjectile();
+        }
         RotateGun(mousePosition);
     }
     #endregion
-    #region Metodos auxiliares
+    #region Metodos de lanzamiento
     /// <summary>
     /// Rota el arma/canon/tirachinas para que la punta mire al puntero del raton
     /// </summary>
@@ -69,7 +74,7 @@ public class GunPoint : MonoBehaviour
     /// </summary>
     private void LaunchProjectile()
     {
-        GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity);
+        GameObject projectile = Instantiate(availablePrefabs[selectedPrefabIndex], gameObject.transform.position, Quaternion.identity);
         Vector2 direction = distanceVector.normalized;
         projectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
 
@@ -79,14 +84,12 @@ public class GunPoint : MonoBehaviour
     #region Dibujar trayectoria
     private void DrawProjectileTrajectory()
     {
-        //List<Vector2> linePoints = new List<Vector2>();
         float simulationDuration = 3f;
-        float stepInterval = 0.01f;
+        float stepInterval = 0.05f;
         int steps = (int)(simulationDuration / stepInterval);
         lineRenderer.positionCount = steps;
+        float projectileMass = availablePrefabs[selectedPrefabIndex].gameObject.GetComponent<Rigidbody2D>().mass;
         float velocity = (launchForce / projectileMass) * Time.fixedDeltaTime;
-        float drag = Mathf.Pow(velocity, 2) * projectileRb.drag;
-        //velocity = velocity * (1 - Time.fixedDeltaTime * drag);
         Debug.Log(projectileMass);
         Vector3 nextposition;
         for (int i = 0; i < steps; i++)
@@ -95,19 +98,34 @@ public class GunPoint : MonoBehaviour
             float gravity = Physics2D.gravity.y / 2 * Mathf.Pow(i * stepInterval, 2);
             nextposition.y += gravity;
             lineRenderer.SetPosition(i, nextposition);
-            if (LineCollided(nextposition))
+            if (LineCollided(nextposition, stepInterval))
             {
                 steps = i;
                 lineRenderer.positionCount = steps;
             }
         }
-        //return linePoints;
     }
-    private bool LineCollided(Vector3 position)
+    /// <summary>
+    /// Metodo que calcula si en el siguiente paso de la linea de trayectoria colisionaria
+    /// </summary>
+    /// <param name="position">la posicion del siguiente punto</param>
+    /// <param name="stepSize">el radio del area que detecta colisiones</param>
+    /// <returns>true si la linea tocaria un collider en el siguiente punto de la trayectoria</returns>
+    private bool LineCollided(Vector3 position, float stepSize)
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(position, 0.1f);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
 
         return hits.Length>0;
+    }
+    #endregion
+    #region seleccionar proyectil
+    private void SwitchProjectile()
+    {
+        selectedPrefabIndex++;
+        if(selectedPrefabIndex >= availablePrefabs.Length)
+        {
+            selectedPrefabIndex = 0;
+        }
     }
     #endregion
 }
