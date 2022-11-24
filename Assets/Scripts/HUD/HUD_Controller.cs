@@ -8,8 +8,9 @@ public class HUD_Controller : MonoBehaviour
 {
     #region Attributes
     [SerializeField] private GameObject timeBar, seed1, seed2;
-    [SerializeField] private TextMeshProUGUI textTime;
+    [SerializeField] private TextMeshProUGUI textTime, textContadorSeed1, textContadorSeed2;
     [SerializeField] private float maxTime = 60;
+    [SerializeField] private Material materialOpaco, materialDefault;
     private float time;
     private PlayerController playerController;
 
@@ -19,6 +20,7 @@ public class HUD_Controller : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        SetTimeBar((maxTime - time) / maxTime);
     }
 
     void Update()
@@ -28,7 +30,7 @@ public class HUD_Controller : MonoBehaviour
         //actualizar barra tiempo
         StartCoroutine(SetSmoothTimeBar());
         //actualizar semillas
-        //SetPlayerSeeds();
+        SetPlayerSeeds();
     }
     #endregion
 
@@ -44,7 +46,6 @@ public class HUD_Controller : MonoBehaviour
         //Añado el intervalo transcurrido a la variable
         time += Time.deltaTime;
         
-
         //Formateo minutos y segundos a dos dígitos
         string minutos = Mathf.Floor(time / 60).ToString("00");
         string segundos = Mathf.Floor(time % 60).ToString("00");
@@ -53,6 +54,11 @@ public class HUD_Controller : MonoBehaviour
         return minutos + ":" + segundos;
     }
 
+    /// <summary>
+    ///     <b>Cabecera: </b>private IEnumerator SetSmoothTimeBar()
+    ///     <b>Descripción: </b> Baja la barra de tiempo acorde con un tiempo máximo predeterminado
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SetSmoothTimeBar()
     {
         float normalizedValue = (maxTime - time) / maxTime;
@@ -75,28 +81,36 @@ public class HUD_Controller : MonoBehaviour
         }
     }
 
-    /*
-     * private void SetPlayerSeeds()
+    public void SetTimeBar(float normalizedValue)
     {
-        switch (playerController.Seeds)
+        timeBar.transform.localScale = new Vector3(normalizedValue, 1.0f);
+    }
+
+
+    /// <summary>
+    ///     <b>Cabecera: </b>private void SetPlayerSeeds()
+    ///     <b>Descripción: </b> Cambia la interfaz de las semillas restantes con respecto al numero de semillas
+    /// </summary>
+    private void SetPlayerSeeds()
+    {
+        switch (playerController.Semillas)
         {
             case 0:
-                seed1.GetComponent<Image>().color = Color.grey;
-                seed2.GetComponent<Image>().color = Color.grey;
+                seed1.GetComponent<Image>().material = materialOpaco;
+                seed2.GetComponent<Image>().material = materialOpaco;
                 break;
 
             case 1:
-                seed1.GetComponent<Image>().color = new Color(219,36,180,255);
-                seed2.GetComponent<Image>().color = Color.grey;
+                seed1.GetComponent<Image>().material = materialDefault;
+                seed2.GetComponent<Image>().material = materialOpaco;
                 break;
 
             case 2:
-                seed1.GetComponent<Image>().color = new Color(219, 36, 180, 255);
-                seed2.GetComponent<Image>().color = new Color(219, 36, 180, 255);
+                seed1.GetComponent<Image>().material = materialDefault;
+                seed2.GetComponent<Image>().material = materialDefault;
                 break;
         }
     }
-     * */
 
     #endregion
 }

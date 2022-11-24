@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private Animator animador;
     public float VidaTotal;
     public float VidaActual;
+    [SerializeField] private int semillas;
+    public int Semillas { get => semillas; set => semillas = value; }
     #endregion
 
     #region Contructores
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
         capCollider = GetComponent<CapsuleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
+        semillas = 2;
     }
 
     #endregion
@@ -142,6 +145,8 @@ public class PlayerController : MonoBehaviour
 
         if (VidaActual < VidaTotal) {
             VidaActual += vida;
+            //Actualizar la barra de vida en el HUD 
+            GameObject.Find("HUD").GetComponent<HUD_Controller>().SetTimeBar(VidaActual / VidaTotal);
         }
     }
     #endregion
