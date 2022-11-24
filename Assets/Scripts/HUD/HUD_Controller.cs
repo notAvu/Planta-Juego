@@ -28,7 +28,7 @@ public class HUD_Controller : MonoBehaviour
         //actualizar barra tiempo
         StartCoroutine(SetSmoothTimeBar());
         //actualizar semillas
-        SetPlayerSeeds();
+        //SetPlayerSeeds();
     }
     #endregion
 
