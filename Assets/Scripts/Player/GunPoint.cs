@@ -16,6 +16,9 @@ public class GunPoint : MonoBehaviour
     #region 
     [SerializeField]
     private KeyCode launchButton;
+
+    private float projectileOneAxisVal;
+    private float projectileTwoAxisVal;
     [SerializeField]
     private KeyCode switchProjectileButton;
     #endregion
@@ -23,7 +26,8 @@ public class GunPoint : MonoBehaviour
     #region variables prefabs proyectiles
     [SerializeField]
     private GameObject[] availablePrefabs;
-
+    private GameObject activeProjectile;
+    private bool chargingProjectile;
     private int selectedPrefabIndex;
 
     private LineRenderer lineRenderer;
@@ -37,25 +41,42 @@ public class GunPoint : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         selectedPrefabIndex = 0;
+        chargingProjectile = false;
+        activeProjectile = null;
     }
     private void Update()
     {
+        projectileOneAxisVal = Input.GetAxisRaw("Fire1");
+        projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKey(launchButton))
+        //if (Input.GetKey(launchButton))
+        if (projectileOneAxisVal > 0 && activeProjectile == null)
         {
-            lineRenderer.enabled = true;
-            DrawProjectileTrajectory();
+            SelectProjectileByIndex(0);
+            ChargeProjectile();
         }
-        if (Input.GetKeyUp(launchButton))
+        else if (projectileTwoAxisVal > 0 && activeProjectile == null)
         {
-            lineRenderer.enabled = false;
+            SelectProjectileByIndex(1);
+            ChargeProjectile();
+        }
+        //if (Input.GetKeyUp(launchButton))
+        else if((projectileOneAxisVal<=0|| projectileTwoAxisVal <= 0) && chargingProjectile)
+        {
             LaunchProjectile();
         }
-        if (Input.GetKeyDown(switchProjectileButton))
-        {
-            SwitchProjectile();
-        }
+        //if (Input.GetKeyDown(switchProjectileButton))
+        //{
+        //    SwitchProjectile();
+        //}
+        lineRenderer.enabled = chargingProjectile;
         RotateGun(mousePosition);
+    }
+
+    private void ChargeProjectile()
+    {
+        chargingProjectile = true;
+        DrawProjectileTrajectory();
     }
     #endregion
     #region Metodos de lanzamiento
@@ -74,11 +95,10 @@ public class GunPoint : MonoBehaviour
     /// </summary>
     private void LaunchProjectile()
     {
-        GameObject projectile = Instantiate(availablePrefabs[selectedPrefabIndex], gameObject.transform.position, Quaternion.identity);
+        activeProjectile = Instantiate(availablePrefabs[selectedPrefabIndex], gameObject.transform.position, Quaternion.identity);
         Vector2 direction = distanceVector.normalized;
-        projectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
-
-        //Debug.Log($"{direction.x}x {direction.y}y");
+        activeProjectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
+        chargingProjectile = false;
     }
     #endregion
     #region Dibujar trayectoria
@@ -93,7 +113,6 @@ public class GunPoint : MonoBehaviour
         lineRenderer.positionCount = steps;
         float projectileMass = availablePrefabs[selectedPrefabIndex].gameObject.GetComponent<Rigidbody2D>().mass;
         float velocity = (launchForce / projectileMass) * Time.fixedDeltaTime;
-        Debug.Log(projectileMass);
         Vector3 nextposition;
         for (int i = 0; i < steps; i++)
         {
@@ -131,6 +150,13 @@ public class GunPoint : MonoBehaviour
         if(selectedPrefabIndex >= availablePrefabs.Length)
         {
             selectedPrefabIndex = 0;
+        }
+    }
+    private void SelectProjectileByIndex(int index)
+    {
+        if (index < availablePrefabs.Length)
+        {
+            selectedPrefabIndex = index;
         }
     }
     #endregion
