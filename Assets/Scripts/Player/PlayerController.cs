@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public LayerMask capaSuelo;
     private Animator animador;
-
+    public float VidaTotal;
+    public float VidaActual;
     #endregion
 
     #region Contructores
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region Métodos privados
+    #region Mï¿½todos privados
 
     private void Update()
     {
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Procesa el salto, si el jugador ha pulsado la tecla Espacio se aplicará la fuerzaSalto con la direccion Vector2.up
+    /// Procesa el salto, si el jugador ha pulsado la tecla Espacio se aplicarï¿½ la fuerzaSalto con la direccion Vector2.up
     /// </summary>
     private void ProcesarSalto()
     {
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Procesa el movimiento, si el jugador no esta en el suelo la variable restaVelocidad será mayor que 0, por lo que la velocidad horizontal disminuye
+    /// Procesa el movimiento, si el jugador no esta en el suelo la variable restaVelocidad serï¿½ mayor que 0, por lo que la velocidad horizontal disminuye
     /// </summary>
     private void ProcesarMovimiento()
     {
@@ -78,19 +79,19 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-        else if(movHorizontal < 0)
+        else if (movHorizontal < 0)
         {
             spriteRenderer.flipX = true;
         }
     }
 
     /// <summary>
-    /// Se crea un raycast, si los pies del jugador están tocando el suelo devolverá true, de lo contrario devolverá false
+    /// Se crea un raycast, si los pies del jugador estï¿½n tocando el suelo devolverï¿½ true, de lo contrario devolverï¿½ false
     /// </summary>
     /// <returns>Bool</returns>
     private bool EstaEnSuelo()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(capCollider.bounds.center, new Vector2(capCollider.bounds.size.x/2, capCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaSuelo);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(capCollider.bounds.center, new Vector2(capCollider.bounds.size.x / 2, capCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaSuelo);
         return raycastHit.collider != null;
     }
 
@@ -100,19 +101,19 @@ public class PlayerController : MonoBehaviour
     /*
     private void AnimarJugador()
     {
-        //Si está saltando
+        //Si estï¿½ saltando
         if (!EstaEnSuelo())
         {
             animador.SetBool("saltando", true);
             animador.SetBool("corriendo", false);
         }
-        //Si está en movimiento
+        //Si estï¿½ en movimiento
         else if (Mathf.Abs(rigid.velocity.x) > 0.1 && Mathf.Abs(rigid.velocity.y) == 0)
         {
             animador.SetBool("corriendo", true);
             animador.SetBool("saltando", false);
         }
-        //Si está quieto
+        //Si estï¿½ quieto
         else
         {
             animador.SetBool("corriendo", false);
@@ -135,6 +136,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+    public void AÃ±adirVida(float vida){
+
+        if (VidaActual < VidaTotal) {
+            VidaActual += vida;
         }
     }
     #endregion
