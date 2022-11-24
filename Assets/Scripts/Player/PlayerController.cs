@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask capaSuelo;
     private Animator animador;
 
+
     #endregion
 
     #region Contructores
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         velocidad = 10f;
         fuerzaSalto = 6.8f;
+        seeds = 2;
         rigid = GetComponent<Rigidbody2D>();
         capCollider = GetComponent<CapsuleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
