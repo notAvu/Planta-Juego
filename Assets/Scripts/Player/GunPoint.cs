@@ -13,20 +13,22 @@ public class GunPoint : MonoBehaviour
     [SerializeField]
     private Transform gunPivot;
     #endregion
-    #region 
-    [SerializeField]
-    private KeyCode launchButton;
+    #region input disparo
+    //[SerializeField]
+    //private KeyCode launchButton;
+    //[SerializeField]
+    //private KeyCode switchProjectileButton;
 
     private float projectileOneAxisVal;
     private float projectileTwoAxisVal;
-    [SerializeField]
-    private KeyCode switchProjectileButton;
     #endregion
     #region
     #region variables prefabs proyectiles
     [SerializeField]
     private GameObject[] availablePrefabs;
+    
     private GameObject activeProjectile;
+
     private bool chargingProjectile;
     private int selectedPrefabIndex;
 
@@ -152,6 +154,10 @@ public class GunPoint : MonoBehaviour
             selectedPrefabIndex = 0;
         }
     }
+    /// <summary>
+    /// Cambia el proyectil seleccionado en funcion del indice indicado
+    /// </summary>
+    /// <param name="index"></param>
     private void SelectProjectileByIndex(int index)
     {
         if (index < availablePrefabs.Length)
