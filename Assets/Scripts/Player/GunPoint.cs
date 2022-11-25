@@ -58,12 +58,12 @@ public class GunPoint : MonoBehaviour
     private void FixedUpdate()
     {
         //if (Input.GetKey(launchButton))
-        if (projectileOneAxisVal > 0 )
+        if (projectileOneAxisVal > 0 && activeProjectile == null)
         {
             SelectProjectileByIndex(0);
             ChargeProjectile();
         }
-        else if (projectileTwoAxisVal > 0)
+        else if (projectileTwoAxisVal > 0 && activeProjectile == null)
         {
             SelectProjectileByIndex(1);
             ChargeProjectile();
