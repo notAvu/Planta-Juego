@@ -9,12 +9,13 @@ public class TeleportProjectile : MonoBehaviour
     [SerializeField]
     private string groundTag;
     private GameObject player;
-    float offset;
+    float playerYSizeOffset;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag(playerTag);
-        offset = player.transform.localScale.y / 2;
+        playerYSizeOffset = player.transform.localScale.y / 2;
     }
     private void FixedUpdate()
     {
@@ -27,12 +28,15 @@ public class TeleportProjectile : MonoBehaviour
         {
             foreach (Collider2D hit in hits)
             {
-                if (hit.CompareTag(groundTag))
+                Vector3 collisionPoint = hit.ClosestPoint(position);
+                float angle = Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
+                bool horizontal = (int)angle == 0 || (int)angle == 180;
+                if (hit.CompareTag(groundTag) && !horizontal)
                 {
-                    player.transform.position = new Vector2(transform.position.x, transform.position.y + offset);
+                    player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
                 }
             }
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }
