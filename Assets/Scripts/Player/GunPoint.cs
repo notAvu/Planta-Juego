@@ -39,7 +39,7 @@ public class GunPoint : MonoBehaviour
     private Vector3 distanceVector;
     #endregion
     #region eventos de Unity
-    private void Start()
+    private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         selectedPrefabIndex = 0;
@@ -48,16 +48,22 @@ public class GunPoint : MonoBehaviour
     }
     private void Update()
     {
+        
         projectileOneAxisVal = Input.GetAxisRaw("Fire1");
         projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        RotateGun(mousePosition);
+
+    }
+    private void FixedUpdate()
+    {
         //if (Input.GetKey(launchButton))
-        if (projectileOneAxisVal > 0 && activeProjectile == null)
+        if (projectileOneAxisVal > 0 )
         {
             SelectProjectileByIndex(0);
             ChargeProjectile();
         }
-        else if (projectileTwoAxisVal > 0 && activeProjectile == null)
+        else if (projectileTwoAxisVal > 0)
         {
             SelectProjectileByIndex(1);
             ChargeProjectile();
@@ -72,7 +78,6 @@ public class GunPoint : MonoBehaviour
         //    SwitchProjectile();
         //}
         lineRenderer.enabled = chargingProjectile;
-        RotateGun(mousePosition);
     }
 
     private void ChargeProjectile()
@@ -138,7 +143,7 @@ public class GunPoint : MonoBehaviour
     private bool LineCollided(Vector3 position, float stepSize)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
-
+        
         return hits.Length>0;
     }
     #endregion
