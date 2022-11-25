@@ -9,9 +9,7 @@ public class PlatformProjectile : MonoBehaviour
     public GameObject plataformaPrefab;
     private float offset;
     [SerializeField]
-    private string tagPared;
-    [SerializeField]
-    private string tagSuelo;//Creo las dos tags para diferenciar cuando debe instanciarse en horizontal o en vertical, en funcion de donde impacte la semilla
+    private string tagSuelo;
 
     #endregion
 
@@ -39,9 +37,8 @@ public class PlatformProjectile : MonoBehaviour
         Vector2 posicionPlataforma = horizontal ?
             new Vector2(position.x + offset * direccionX, position.y) :
         new Vector2(position.x, position.y + offset * direccionY);
-        GameObject plataformaCreada;
 
-        plataformaCreada = Instantiate(plataformaPrefab, posicionPlataforma, Quaternion.identity);
+        GameObject plataformaCreada = Instantiate(plataformaPrefab, posicionPlataforma, Quaternion.identity);
         if (horizontal)
         {
             plataformaCreada.transform.Rotate(0, 0, 90f);
