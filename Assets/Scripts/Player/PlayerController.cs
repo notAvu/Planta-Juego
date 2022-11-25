@@ -32,13 +32,25 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region M�todos privados
+    #region Metodos publicos
+
+    public void AñadirVida(float vida)
+    {
+
+        if (VidaActual < VidaTotal)
+        {
+            VidaActual += vida;
+        }
+    }
+
+    #endregion
+
+    #region Metodos privados
 
     private void Update()
     {
         ProcesarMovimiento();
         ProcesarSalto();
-        Reinicio();
 
         //AnimarJugador();
     }
@@ -128,21 +140,6 @@ public class PlayerController : MonoBehaviour
 
         }*/
     }
-    /// <summary>
-    /// Metodo llamado desde update para reiniciar la escena actual.
-    /// </summary>
-    private void Reinicio()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
-    public void AñadirVida(float vida){
 
-        if (VidaActual < VidaTotal) {
-            VidaActual += vida;
-        }
-    }
     #endregion
 }

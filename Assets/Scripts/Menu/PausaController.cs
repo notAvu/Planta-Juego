@@ -9,12 +9,14 @@ public class PausaController : MonoBehaviour
     [SerializeField] private GameObject pausaPanel;
     public string menuSceneName;
     private bool gamePaused;
+    private GameController gameController;
     #endregion
 
 
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         gamePaused = false;
         pausaPanel.SetActive(false);
     }
@@ -67,20 +69,21 @@ public class PausaController : MonoBehaviour
     }
 
     /// <summary>
-    /// Llama al método de reinicio Rápido, como si hubieses tocado R
+    /// Llama al método de reinicio
     /// </summary>
     public void OnButtonReset()
     {
-        //objetoReseteo.MetodoReseteo()
+        gameController.ReiniciarNivel();
         ResumeGame();
     }
 
     /// <summary>
     /// Al pulsar el botón de salir se llama al menú del juego (Escena inicial)
     /// </summary>
-    public void OnButtonVolver()
+    public void OnButtonMenu()
     {
         SceneManager.LoadScene(menuSceneName);
+        ResumeGame();
     }
 
 
