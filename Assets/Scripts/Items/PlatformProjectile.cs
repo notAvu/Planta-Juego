@@ -6,17 +6,18 @@ public class PlatformProjectile : MonoBehaviour
 {
     //Se asociaria al prefab de la Semilla que creará la plataforma
     #region Atributos
-    public GameObject plataformaPrefab; 
+    public GameObject plataformaPrefab;
     private float offset;
     [SerializeField]
     private string tagPared;
     [SerializeField]
     private string tagSuelo;//Creo las dos tags para diferenciar cuando debe instanciarse en horizontal o en vertical, en funcion de donde impacte la semilla
+
     #endregion
 
     #region Contructores
 
-    void Start()
+    void Awake()
     {
         offset = plataformaPrefab.transform.localScale.y / 2;
     }
@@ -31,8 +32,9 @@ public class PlatformProjectile : MonoBehaviour
 
     private void CrearPlataforma(bool horizontal, Vector3 position)
     {
-        float direccionY = -Mathf.Sign(gameObject.GetComponent<Rigidbody2D>().velocity.y);
-        float direccionX = -Mathf.Sign(gameObject.GetComponent<Rigidbody2D>().velocity.x);
+        var velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+        float direccionY = -Mathf.Sign(velocity.y);
+        float direccionX = -Mathf.Sign(velocity.x);
 
         Vector2 posicionPlataforma = horizontal ?
             new Vector2(position.x + offset * direccionX, position.y) :
@@ -41,8 +43,9 @@ public class PlatformProjectile : MonoBehaviour
 
         plataformaCreada = Instantiate(plataformaPrefab, posicionPlataforma, Quaternion.identity);
         if (horizontal)
+        {
             plataformaCreada.transform.Rotate(0, 0, 90f);
-        plataformaCreada.GetComponent<Platform>().StartDestructionTimer();
+        }
         Destroy(this.gameObject);
 
     }
@@ -53,15 +56,15 @@ public class PlatformProjectile : MonoBehaviour
         {
             if (hit.CompareTag(tagSuelo))
             {
-                CrearPlataforma(false, hit.ClosestPoint(position));
-            }
-            else if (hit.CompareTag(tagPared))
-            {
-                CrearPlataforma(true, hit.ClosestPoint(position));
+                Vector3 collisionPoint = hit.ClosestPoint(position);
+                float angle = Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
+                bool horizontal = (int)angle == 0 || (int)angle == 180;
+
+                CrearPlataforma(horizontal, hit.ClosestPoint(position));
+
             }
         }
     }
-
     #endregion
 }
 

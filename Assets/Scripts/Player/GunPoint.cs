@@ -14,41 +14,34 @@ public class GunPoint : MonoBehaviour
     private Transform gunPivot;
     #endregion
     #region input disparo
-    //[SerializeField]
-    //private KeyCode launchButton;
-    //[SerializeField]
-    //private KeyCode switchProjectileButton;
 
-    private float projectileOneAxisVal;
-    private float projectileTwoAxisVal;
+    private float projectileOneAxisVal;//Valor del trigger o click del raton asociado al primer proyectil
+    private float projectileTwoAxisVal;//Valor del trigger o click del raton asociado al segundo proyectil
     #endregion
-    #region
+
     #region variables prefabs proyectiles
     [SerializeField]
     private GameObject[] availablePrefabs;
-    
+    private int selectedPrefabIndex;
+
     private GameObject activeProjectile;
 
     private bool chargingProjectile;
-    private int selectedPrefabIndex;
 
     private LineRenderer lineRenderer;
-    #endregion
+
     [SerializeField]
     private float launchForce; //Valor de ejemplo 500
-    private Vector3 distanceVector;
+    private Vector3 distanceVector; //representa la distancia entre el jugador y la posicion del raton
     #endregion
     #region eventos de Unity
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        selectedPrefabIndex = 0;
-        chargingProjectile = false;
-        activeProjectile = null;
     }
     private void Update()
     {
-        
+
         projectileOneAxisVal = Input.GetAxisRaw("Fire1");
         projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -57,34 +50,21 @@ public class GunPoint : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //if (Input.GetKey(launchButton))
         if (projectileOneAxisVal > 0 && activeProjectile == null)
         {
-            SelectProjectileByIndex(0);
-            ChargeProjectile();
+            ChargeProjectile(0);
         }
         else if (projectileTwoAxisVal > 0 && activeProjectile == null)
         {
-            SelectProjectileByIndex(1);
-            ChargeProjectile();
+            ChargeProjectile(1);
         }
-        //if (Input.GetKeyUp(launchButton))
-        else if((projectileOneAxisVal<=0|| projectileTwoAxisVal <= 0) && chargingProjectile)
+        else if ((projectileOneAxisVal <= 0 || projectileTwoAxisVal <= 0) && chargingProjectile)
         {
             LaunchProjectile();
         }
-        //if (Input.GetKeyDown(switchProjectileButton))
-        //{
-        //    SwitchProjectile();
-        //}
         lineRenderer.enabled = chargingProjectile;
     }
 
-    private void ChargeProjectile()
-    {
-        chargingProjectile = true;
-        DrawProjectileTrajectory();
-    }
     #endregion
     #region Metodos de lanzamiento
     /// <summary>
@@ -143,31 +123,23 @@ public class GunPoint : MonoBehaviour
     private bool LineCollided(Vector3 position, float stepSize)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
-        
-        return hits.Length>0;
+
+        return hits.Length > 0;
     }
     #endregion
     #region seleccionar proyectil
     /// <summary>
-    /// Cambia el proyectil a lanzar al siguiente del array de pryectiles
-    /// </summary>
-    private void SwitchProjectile()
-    {
-        selectedPrefabIndex++;
-        if(selectedPrefabIndex >= availablePrefabs.Length)
-        {
-            selectedPrefabIndex = 0;
-        }
-    }
-    /// <summary>
-    /// Cambia el proyectil seleccionado en funcion del indice indicado
+    /// Cambia el proyectil seleccionado en funcion del indice indicado, lo carga y dibuja la trayectoria que va a seguir
     /// </summary>
     /// <param name="index"></param>
-    private void SelectProjectileByIndex(int index)
+    private void ChargeProjectile(int index)
     {
         if (index < availablePrefabs.Length)
         {
             selectedPrefabIndex = index;
+
+            chargingProjectile = true;
+            DrawProjectileTrajectory();
         }
     }
     #endregion
