@@ -14,7 +14,6 @@ public class TeleportProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Physics2D.queriesHitTriggers = true;
         player = GameObject.FindGameObjectWithTag(playerTag);
         playerYSizeOffset = (player.transform.localScale.y / 2) - 0.15f;
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
@@ -30,7 +29,7 @@ public class TeleportProjectile : MonoBehaviour
 
         if (hits.Length > 1)
         {
-            bool lateDestroy = false;
+            bool dontDestroy = false;
             foreach (Collider2D hit in hits)
             {
                 if (hit != null)
@@ -44,20 +43,12 @@ public class TeleportProjectile : MonoBehaviour
                     //Debug.Log(direction.y);
                     bool horizontal = (angle == 0  || angle == 180 ) ;
                     //Debug.Log(horizontal);
-                    lateDestroy = hit.CompareTag("Trigger") || hit.CompareTag("Player");
+                    dontDestroy =  hit.CompareTag(playerTag);
                     if (hit.CompareTag(groundTag) && !horizontal)
                     {
                         player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
                         
-                        lateDestroy = false;
-                    }
-                    else if (hit.CompareTag("Trigger"))
-                    {
-                        CameraChangerController cameraTrigger;
-                        hit.gameObject.TryGetComponent(out cameraTrigger);
-                        if (cameraTrigger != null)
-                            cameraTrigger.CambiaPosicionCamara();
-                        lateDestroy = true;
+                        dontDestroy = false;
                     }
                     //teleport = !hit.CompareTag("Vines") && (hit.CompareTag(groundTag) && !horizontal)
                 }
@@ -67,25 +58,11 @@ public class TeleportProjectile : MonoBehaviour
             //  var newPosition = player.transform.position = newPosition;
             //  lateDestroy = false;
             //}
-            if (!lateDestroy)
+            if (!dontDestroy)
             {
                 Destroy(gameObject);
             }
-            else
-            {
-                StartCoroutine(nameof(LateDestroy));
-            }
         }
-    }
-
-    private IEnumerator LateDestroy()
-    {
-        yield return new WaitForSeconds(1.5f);
-        //He puesto el late destroy con un limitador de tiempo para que si la semilla cae demasiado lejos fuera de camara
-        //no teletransporte al jugador a, por ejemplo, una caida o un sitio donde se quede estancado.
-        //Aun asi el jugador puede caer al otro lado del trigger de la camara y teleportarse, se puede ajustarse el tiempo segun se quiera para asegurarse 
-        //de que el teletransporte del jugador fuera de la camara funcione como queramos 
-        Destroy(gameObject);
     }
 
 }
