@@ -126,8 +126,15 @@ public class GunPoint : MonoBehaviour
     private bool LineCollided(Vector3 position, float stepSize)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
+        int numberOfHits = hits.Length;
+        foreach (Collider2D hit in hits)
+            if (hit.CompareTag("Player"))
+            {
+                Physics2D.IgnoreCollision(hit, gunHolder.GetComponent<Collider2D>());
+                numberOfHits = 0;
+            }
         Physics2D.queriesHitTriggers = false;
-        return hits.Length > 0;
+        return numberOfHits > 0;
     }
     #endregion
     #region seleccionar proyectil

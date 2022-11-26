@@ -15,11 +15,15 @@ public class Platform : MonoBehaviour
         activePlatform = this.gameObject;
         StartCoroutine(nameof(DestructionTimer));
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.otherRigidbody.AddForce(new Vector2(30,0));
+            var collisionRb = collision.otherRigidbody;
+            if(collisionRb != null)
+            {
+                collisionRb.AddForce(new Vector2(30, 0));
+            }
         }
     }
     private IEnumerator DestructionTimer()

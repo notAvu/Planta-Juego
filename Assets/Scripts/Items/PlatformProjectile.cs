@@ -6,10 +6,10 @@ public class PlatformProjectile : MonoBehaviour
 {
     //Se asociaria al prefab de la Semilla que creará la plataforma
     #region Atributos
-    public GameObject plataformaPrefab;
+    public GameObject platformPrefab;
     private float offset;
     [SerializeField]
-    private string tagSuelo;
+    private string groundTag;
     [SerializeField]
     private string playerTag;
 
@@ -20,7 +20,7 @@ public class PlatformProjectile : MonoBehaviour
     void Awake()
     {
         Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag(playerTag).GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
-        offset = plataformaPrefab.transform.localScale.y / 2;
+        offset = platformPrefab.transform.localScale.y / 2;
     }
 
     #endregion
@@ -34,19 +34,19 @@ public class PlatformProjectile : MonoBehaviour
     private void CrearPlataforma(bool horizontal, Vector3 position)
     {
         var velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
-        float direccionY = -Mathf.Sign(velocity.y);
-        float direccionX = -Mathf.Sign(velocity.x);
+        float yDirection = -Mathf.Sign(velocity.y);
+        float xDirection = -Mathf.Sign(velocity.x);
 
-        Vector2 posicionPlataforma = horizontal ?
-            new Vector2(position.x + offset * direccionX, position.y) :
-        new Vector2(position.x, position.y + offset * direccionY);
+        Vector2 platformPosition = horizontal ?
+            new Vector2(position.x + offset * xDirection, position.y) :
+        new Vector2(position.x, position.y + offset * yDirection);
 
-        GameObject plataformaCreada = Instantiate(plataformaPrefab, posicionPlataforma, Quaternion.identity);
+        GameObject newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
         if (horizontal)
         {
-            plataformaCreada.transform.Rotate(0, 0, 90f);
+            newPlatform.transform.Rotate(0, 0, 90f);
         }
-        Destroy(this.gameObject);
+        Destroy(gameObject);
 
     }
     private void PredictCollisionPoint(Vector3 position, float stepSize)
@@ -54,7 +54,7 @@ public class PlatformProjectile : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
         foreach (Collider2D hit in hits)
         {
-            if (hit.CompareTag(tagSuelo))
+            if (hit.CompareTag(groundTag) && !hit.gameObject.name.Contains(platformPrefab.name))
             {
                 Vector3 collisionPoint = hit.ClosestPoint(position);
                 float angle = Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));

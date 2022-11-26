@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201f7d9a9a752f044ab9cf7979ca9f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plataformaPrefab: {fileID: 8868912474436450139, guid: a1fbcba4d1236994ab0074e8f3dcd518, type: 3}
-  tagSuelo: Ground
+  platformPrefab: {fileID: 8868912474436450139, guid: a1fbcba4d1236994ab0074e8f3dcd518, type: 3}
+  groundTag: Ground
   playerTag: Player
