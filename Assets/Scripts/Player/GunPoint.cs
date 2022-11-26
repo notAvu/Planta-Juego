@@ -75,6 +75,9 @@ public class GunPoint : MonoBehaviour
     {
         distanceVector = targetPoint - gunPivot.position;
         float angleDeg = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
+
+        gunHolder.GetComponent<SpriteRenderer>().flipX = angleDeg < 90f;
+
         gunPivot.rotation = Quaternion.AngleAxis(angleDeg, Vector3.forward);
     }
     /// <summary>
@@ -123,7 +126,7 @@ public class GunPoint : MonoBehaviour
     private bool LineCollided(Vector3 position, float stepSize)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
-
+        Physics2D.queriesHitTriggers = false;
         return hits.Length > 0;
     }
     #endregion

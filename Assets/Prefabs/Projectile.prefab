@@ -137,6 +137,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plataformaPrefab: {fileID: 8868912474436450139, guid: a1fbcba4d1236994ab0074e8f3dcd518, type: 3}
-  tagPared: Pared
   tagSuelo: Ground
-  lifeSpan: 3
+  playerTag: Player

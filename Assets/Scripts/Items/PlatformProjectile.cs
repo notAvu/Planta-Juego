@@ -10,6 +10,8 @@ public class PlatformProjectile : MonoBehaviour
     private float offset;
     [SerializeField]
     private string tagSuelo;
+    [SerializeField]
+    private string playerTag;
 
     #endregion
 
@@ -17,6 +19,7 @@ public class PlatformProjectile : MonoBehaviour
 
     void Awake()
     {
+        Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag(playerTag).GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         offset = plataformaPrefab.transform.localScale.y / 2;
     }
 
