@@ -35,7 +35,7 @@ public class GunPoint : MonoBehaviour
 
     [SerializeField]
     private float launchForce; //Valor de ejemplo 500
-    private Vector3 distanceVector; //representa la distancia entre el jugador y la posicion del raton
+    private Vector3 distanceVector; //vecrtor de la distancia entre el jugador y la posicion del raton
     #endregion
     #region eventos de Unity
     private void Awake()
@@ -46,14 +46,11 @@ public class GunPoint : MonoBehaviour
     {
         if (mainCamera == null) { 
             mainCamera = Camera.allCameras[0];
-            Debug.Log("Camera asigned");
         }
 
     }
     private void Update()
     {
-        //if (mainCamera == null)
-        //    mainCamera = Camera.allCameras[0];
 
         projectileOneAxisVal = Input.GetAxisRaw("Fire1");
         projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
@@ -135,7 +132,7 @@ public class GunPoint : MonoBehaviour
         }
     }
     /// <summary>
-    /// Metodo que calcula si en el siguiente paso de la linea de trayectoria colisionaria
+    /// Metodo que calcula si en el siguiente paso de la linea de trayectoria colisionaria ignorando las <see cref="tagsToIgnore"/>
     /// </summary>
     /// <param name="position">la posicion del siguiente punto</param>
     /// <param name="stepSize">el radio del area que detecta colisiones</param>

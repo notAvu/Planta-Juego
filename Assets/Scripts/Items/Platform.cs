@@ -12,7 +12,7 @@ public class Platform : MonoBehaviour
         {
             Destroy(activePlatform);
         }
-        activePlatform = this.gameObject;
+        activePlatform = gameObject;
         StartCoroutine(nameof(DestructionTimer));
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,6 +26,10 @@ public class Platform : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Empieza un contador que tras <see cref="lifeSpan"/> segundos destruye la plataforma
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DestructionTimer()
     {
         yield return new WaitForSeconds(lifeSpan);
