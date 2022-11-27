@@ -47,17 +47,18 @@ public class TeleportProjectile : MonoBehaviour
                     if (hit.CompareTag(groundTag) && !horizontal)
                     {
                         player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
-                        
+
                         dontDestroy = false;
                     }
-                    //teleport = !hit.CompareTag("Vines") && (hit.CompareTag(groundTag) && !horizontal)
+
+                    else if (hit.CompareTag("Vines") || hit.CompareTag("Untagged"))
+                    {
+                        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), hit);
+                        dontDestroy = true;
+                    }
                 }
+                Debug.Log(hit.tag);
             }
-            //if(teleport)
-            //{
-            //  var newPosition = player.transform.position = newPosition;
-            //  lateDestroy = false;
-            //}
             if (!dontDestroy)
             {
                 Destroy(gameObject);
