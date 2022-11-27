@@ -44,10 +44,15 @@ public class PlatformProjectile : MonoBehaviour
             new Vector2(position.x + offset * xDirection, position.y) :
         new Vector2(position.x, position.y + offset * yDirection);
 
-        GameObject newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
+        //GameObject newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
+        GameObject newPlatform;
         if (vertical)
         {
+            newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
             newPlatform.transform.Rotate(0, 0, 90f);
+        }
+        else
+        {
         }
         Destroy(gameObject);
 

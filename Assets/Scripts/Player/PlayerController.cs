@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
     private Animator animador;
     public float VidaTotal;
     public float VidaActual;
-    private string tagHiedra;
-    private string tagCuervo;
+    public string tagHiedra;
+    public string tagEnemigo;
     #endregion
 
     #region Contructores
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(tagCuervo))
+        if (collision.gameObject.CompareTag(tagEnemigo))
         {
             //tras colisionar con el cuervo se reinicia el nivel.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
