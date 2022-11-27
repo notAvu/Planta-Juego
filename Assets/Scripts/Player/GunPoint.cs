@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunPoint : MonoBehaviour
 {
     #region referencias de escena
-    //[SerializeField]
+    [SerializeField]
     private Camera mainCamera;
 
     [SerializeField]
@@ -44,9 +44,6 @@ public class GunPoint : MonoBehaviour
     }
     private void Update()
     {
-        if (mainCamera == null) { 
-            mainCamera = Camera.allCameras[0];
-        }
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         projectileOneAxisVal = Input.GetAxisRaw("Fire1");
