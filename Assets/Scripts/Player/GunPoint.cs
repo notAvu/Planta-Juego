@@ -42,19 +42,15 @@ public class GunPoint : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
     }
-    private void LateUpdate()
+    private void Update()
     {
         if (mainCamera == null) { 
             mainCamera = Camera.allCameras[0];
         }
-
-    }
-    private void Update()
-    {
+        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         projectileOneAxisVal = Input.GetAxisRaw("Fire1");
         projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
-        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         RotateGun(mousePosition);
 
     }
