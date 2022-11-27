@@ -6,76 +6,76 @@ public class PlatformProjectile : MonoBehaviour
 {
     //Se asociaria al prefab de la Semilla que creará la plataforma
     #region Atributos
-
-    //booleano para comprobar si hay o no plataforma creada
-    private bool creado;
-    private GameObject semillaActiva;
-    public GameObject plataformaPrefab;//se asociaria el prefab de la plataforma que crearía
-    private GameObject plataformaCreada;
+    public GameObject platformPrefab;
     private float offset;
     [SerializeField]
-    private string tagPared;
+    private string groundTag;
     [SerializeField]
-    private string tagSuelo;//Creo las dos tags para diferenciar cuando debe instanciarse en horizontal o en vertical, en funcion de donde impacte la semilla
-    #endregion
-
-    #region Contructores
-
-    void Start()
-    {
-        //Indicamos que no existen plataformas creadas al iniciar 
-        creado = false;
-        semillaActiva = this.gameObject;
-        offset = plataformaPrefab.transform.localScale.y / 2;
-    }
+    private string playerTag;
 
     #endregion
 
-    #region Metodo Privado
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    #region unity Events
+    void Awake()
     {
-        //Revisamos que colisiona con Pared
-        if (collision.gameObject.CompareTag(tagSuelo))
-        {
-            CrearPlataforma(false);
-        }else if (collision.gameObject.CompareTag(tagPared)){
-            CrearPlataforma(true);
-        }
-        Destroy(semillaActiva);
+        Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag(playerTag).GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        offset = platformPrefab.transform.localScale.y / 2;
     }
 
+    #endregion
+    private void FixedUpdate()
+    {
+        PredictCollisionPoint(transform.position, 0.2f);
+    }
+
+    #region methods
     /// <summary>
-    ///  Metodo para crear la plataforma tras revisar si hay o no creada anteriormente una plataforma. En caso de que no hay plataforma se crearía 
-    ///  una plataforma en la ubicacion de la semilla en el momento en el que se llama al metodo además se invoca el método Destruir en 8 segundos.
-    /// En el caso de que ya hay una plataforma, se destruye la actual y pasa a estado false y se vuelve a llamar al metodo CrearPlataforma
+    /// Genera una plataforma en la posicion indicada
     /// </summary>
-
-    private void CrearPlataforma(bool horizontal)
+    /// <param name="vertical">indica si la plataforma se genera en vertical (como una columna) o en horizontal</param>
+    /// <param name="position">Punto en el que se genera la plataforma</param>
+    private void CrearPlataforma(bool vertical, Vector3 position)
     {
-        Vector2 direccion = semillaActiva.GetComponent<Rigidbody2D>().velocity.normalized;
-        Debug.Log($"{direccion.x}x {direccion.y}y");
-        Vector2 posicionPlataforma = horizontal ?
-            new Vector2(semillaActiva.transform.position.x + offset * direccion.x , semillaActiva.transform.position.y) :
-        new Vector2(semillaActiva.transform.position.x, semillaActiva.transform.position.y + offset * direccion.y);
-        //Vector2 posicionPlataforma = new Vector2(semillaActiva.transform.position.x, semillaActiva.transform.position.y + offset);
-        float rotationDeg = horizontal ? 90f : 0f;
-        if (!creado)
+        var velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+        float yDirection = -Mathf.Sign(velocity.y);
+        float xDirection = -Mathf.Sign(velocity.x);
+
+        Vector2 platformPosition = vertical ?
+            new Vector2(position.x + offset * xDirection, position.y) :
+        new Vector2(position.x, position.y + offset * yDirection);
+
+        GameObject newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
+        if (vertical)
         {
-            plataformaCreada = Instantiate(plataformaPrefab, posicionPlataforma , Quaternion.identity);
-            plataformaCreada.transform.Rotate(0, 0, rotationDeg);
-            plataformaCreada.GetComponent<Platform>().StartDestructionTimer();
-            creado = true;
+            newPlatform.transform.Rotate(0, 0, 90f);
         }
-        else if (creado)
+        Destroy(gameObject);
+
+    }
+    /// <summary>
+    /// Reconoce las colisiones con las que puede impactar el objeto en la posicion indicada en un radio determinado y genera una plataforma en la posicion de impacto
+    /// </summary>
+    /// <remarks>
+    /// Utilizo este metodo en lugar del on collision porque me permite comprobar los datos de la colision antes de que ocurra.
+    /// De lo contrario la colision podria o no haber cambiado la trayectoria del proyectil y el calculo del angulo y la direccion no funcionarian
+    /// </remarks>
+    /// <param name="position">la posicion actual del objeto</param>
+    /// <param name="stepSize">el radio de deteccion de colisiones</param>
+    private void PredictCollisionPoint(Vector3 position, float stepSize)
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
+        foreach (Collider2D hit in hits)
         {
-            plataformaCreada.GetComponent<Platform>().DestroyPlatform();
-            creado = false;
-            CrearPlataforma(horizontal);
+            if (hit.CompareTag(groundTag) && !hit.gameObject.name.Contains(platformPrefab.name))
+            {
+                Vector3 collisionPoint = hit.ClosestPoint(position);
+                float angle = Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
+                bool horizontal = (int)angle == 0 || (int)angle == 180;
+
+                CrearPlataforma(horizontal, hit.ClosestPoint(position));
+            }
         }
     }
-
     #endregion
 }
 
