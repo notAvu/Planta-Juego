@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private Animator animador;
     public float VidaTotal;
     public float VidaActual;
+    private string tagHiedra;
+    private string tagCuervo;
     #endregion
 
     #region Contructores
@@ -135,10 +137,32 @@ public class PlayerController : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /*if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag(tagCuervo))
         {
+            //tras colisionar con el cuervo se reinicia el nivel.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-        }*/
+        }
+        else if (collision.gameObject.CompareTag(tagHiedra))
+        {
+            DañoHiedra();
+        }
+        else if (!collision.gameObject.CompareTag(tagHiedra))
+        {
+            //Si no toca la hiedra vuelve a velocidad inicial
+            velocidad = 10f;
+        }
+
+
+    }
+
+    private void DañoHiedra()
+    {
+
+        //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual
+        velocidad = 8f;
+        VidaActual = VidaActual - 1f;
+
     }
 
     #endregion
