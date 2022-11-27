@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunPoint : MonoBehaviour
 {
     #region referencias de escena
-    [SerializeField]
+    //[SerializeField]
     private Camera mainCamera;
 
     [SerializeField]
@@ -42,8 +42,18 @@ public class GunPoint : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
     }
+    private void LateUpdate()
+    {
+        if (mainCamera == null) { 
+            mainCamera = Camera.allCameras[0];
+            Debug.Log("Camera asigned");
+        }
+
+    }
     private void Update()
     {
+        //if (mainCamera == null)
+        //    mainCamera = Camera.allCameras[0];
 
         projectileOneAxisVal = Input.GetAxisRaw("Fire1");
         projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
@@ -76,6 +86,10 @@ public class GunPoint : MonoBehaviour
     /// <param name="targetPoint">el vector posicion del raton</param>
     private void RotateGun(Vector3 targetPoint)
     {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.current;
+        }
         distanceVector = targetPoint - gunPivot.position;
         float angleDeg = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
 
@@ -135,7 +149,7 @@ public class GunPoint : MonoBehaviour
             if (tagsToIgnore.Contains(hit.tag))
             {
                 Physics2D.IgnoreCollision(hit, availablePrefabs[selectedPrefabIndex].GetComponent<Collider2D>());
-                numberOfHits = 0;
+                numberOfHits--;
             }
         }
         Physics2D.queriesHitTriggers = false;

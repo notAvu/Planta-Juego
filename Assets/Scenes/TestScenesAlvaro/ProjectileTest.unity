@@ -1135,8 +1135,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1919806791}
   - component: {fileID: 1919806794}
-  - component: {fileID: 1919806793}
   - component: {fileID: 1919806792}
+  - component: {fileID: 1919806793}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -1177,6 +1177,10 @@ MonoBehaviour:
   availablePrefabs:
   - {fileID: 6903527598268181120, guid: 72e98bafb3647a4458e52021e93c7f91, type: 3}
   - {fileID: 6681376261613921506, guid: 7f82e093b80c16349a584253230b9ae7, type: 3}
+  tagsToIgnore:
+  - Player
+  - Vines
+  - Untagged
   launchForce: 500
 --- !u!120 &1919806793
 LineRenderer:

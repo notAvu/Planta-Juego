@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private float velocidad, fuerzaSalto;
     private Rigidbody2D rigid;
-    private CapsuleCollider2D capCollider;
+    private Collider2D capCollider;
     private SpriteRenderer spriteRenderer;
     public LayerMask capaSuelo;
     private Animator animador;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         velocidad = 10f;
         fuerzaSalto = 6.8f;
         rigid = GetComponent<Rigidbody2D>();
-        capCollider = GetComponent<CapsuleCollider2D>();
+        capCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
     }
