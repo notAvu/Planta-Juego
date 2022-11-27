@@ -15,8 +15,7 @@ public class PlatformProjectile : MonoBehaviour
 
     #endregion
 
-    #region Contructores
-
+    #region unity Events
     void Awake()
     {
         Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag(playerTag).GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
@@ -29,7 +28,7 @@ public class PlatformProjectile : MonoBehaviour
         PredictCollisionPoint(transform.position, 0.2f);
     }
 
-    #region Metodo Privado
+    #region methods
 
     private void CrearPlataforma(bool horizontal, Vector3 position)
     {
@@ -61,7 +60,6 @@ public class PlatformProjectile : MonoBehaviour
                 bool horizontal = (int)angle == 0 || (int)angle == 180;
 
                 CrearPlataforma(horizontal, hit.ClosestPoint(position));
-
             }
         }
     }

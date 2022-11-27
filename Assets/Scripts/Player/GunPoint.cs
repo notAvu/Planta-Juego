@@ -31,6 +31,9 @@ public class GunPoint : MonoBehaviour
     private LineRenderer lineRenderer;
 
     [SerializeField]
+    List<string> tagsToIgnore;
+
+    [SerializeField]
     private float launchForce; //Valor de ejemplo 500
     private Vector3 distanceVector; //representa la distancia entre el jugador y la posicion del raton
     #endregion
@@ -128,11 +131,13 @@ public class GunPoint : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
         int numberOfHits = hits.Length;
         foreach (Collider2D hit in hits)
-            if (hit.CompareTag("Player"))
+        {
+            if (tagsToIgnore.Contains(hit.tag))
             {
-                Physics2D.IgnoreCollision(hit, gunHolder.GetComponent<Collider2D>());
+                Physics2D.IgnoreCollision(hit, availablePrefabs[selectedPrefabIndex].GetComponent<Collider2D>());
                 numberOfHits = 0;
             }
+        }
         Physics2D.queriesHitTriggers = false;
         return numberOfHits > 0;
     }

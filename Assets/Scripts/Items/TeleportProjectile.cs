@@ -16,6 +16,7 @@ public class TeleportProjectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag(playerTag);
         playerYSizeOffset = (player.transform.localScale.y / 2) - 0.15f;
+        //GetComponent<Rigidbody2D>().
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 
     }
@@ -29,7 +30,6 @@ public class TeleportProjectile : MonoBehaviour
 
         if (hits.Length > 1)
         {
-            bool dontDestroy = false;
             foreach (Collider2D hit in hits)
             {
                 if (hit != null)
@@ -39,30 +39,21 @@ public class TeleportProjectile : MonoBehaviour
                     Vector3 direction = transform.position - collisionPoint;
 
                     int angle = (int)Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
-                    //Debug.Log(angle);
                     //Debug.Log(direction.y);
-                    bool horizontal = (angle == 0  || angle == 180 ) ;
-                    //Debug.Log(horizontal);
-                    dontDestroy =  hit.CompareTag(playerTag);
-                    if (hit.CompareTag(groundTag) && !horizontal)
+                    bool horizontal = (angle == 0 || angle == 180) && direction.magnitude>0.0001;
+                    //Debug.Log(direction.magnitude);
+                    if (hit.CompareTag(groundTag))
                     {
-                        player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
+                        Debug.Log(angle+hit.tag);
+                        if (!horizontal)
+                            player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
 
-                        dontDestroy = false;
-                    }
-
-                    else if (hit.CompareTag("Vines") || hit.CompareTag("Untagged"))
-                    {
-                        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), hit);
-                        dontDestroy = true;
+                        Destroy(gameObject);
                     }
                 }
-                Debug.Log(hit.tag);
+                //Debug.Log(hit.tag);
             }
-            if (!dontDestroy)
-            {
-                Destroy(gameObject);
-            }
+            //Destroy(gameObject);
         }
     }
 
