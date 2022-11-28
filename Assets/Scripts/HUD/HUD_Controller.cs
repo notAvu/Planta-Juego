@@ -13,7 +13,6 @@ public class HUD_Controller : MonoBehaviour
     [SerializeField] private Material materialOpaco, materialDefault;
     private float time;
     private PlayerController playerController;
-    private static int auxcount = 8;
 
     #endregion
 
@@ -31,14 +30,13 @@ public class HUD_Controller : MonoBehaviour
         //actualizar barra tiempo
         StartCoroutine(SetSmoothTimeBar());
         //actualizar semillas
-        SetPlayerSeeds();
-        if (auxcount <= 0)
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            CancelInvoke(nameof(SetCountdownSeed1));
-            auxcount = 8;
-            playerController.Semillas = 2;
-            textContadorSeed1.enabled = false;
+            playerController.semillas--;
+            Debug.Log(playerController.semillas);
+            SetPlayerSeeds();
         }
+      
     }
     #endregion
 
@@ -50,7 +48,6 @@ public class HUD_Controller : MonoBehaviour
     /// <returns> Cadena con el tiempo en minutos y segundos</returns>
     private string SetTime()
     {
-
         //Añado el intervalo transcurrido a la variable
         time += Time.deltaTime;
         
@@ -99,34 +96,53 @@ public class HUD_Controller : MonoBehaviour
     ///     <b>Cabecera: </b>private void SetPlayerSeeds()
     ///     <b>Descripción: </b> Cambia la interfaz de las semillas restantes con respecto al numero de semillas
     /// </summary>
-    private void SetPlayerSeeds()
+    public void SetPlayerSeeds()
     {
-        switch (playerController.Semillas)
+        switch (playerController.semillas)
         {
             case 0:
-                seed1.GetComponent<Image>().material = materialOpaco;
-                seed2.GetComponent<Image>().material = materialOpaco;
+                if (textContadorSeed1.gameObject.activeInHierarchy && !textContadorSeed2.gameObject.activeInHierarchy)
+                {
+                    ChangeSeedMaterial(seed2, materialOpaco);
+                    HUD_CoolDown auxCooldown = new HUD_CoolDown();
+                    StartCoroutine(auxCooldown.StartCountdown(textContadorSeed2));
+                }
+                else if (!textContadorSeed1.gameObject.activeInHierarchy && textContadorSeed2.gameObject.activeInHierarchy)
+                {
+                    ChangeSeedMaterial(seed1, materialOpaco);
+                    HUD_CoolDown auxCooldown = new HUD_CoolDown();
+                    StartCoroutine(auxCooldown.StartCountdown(textContadorSeed1));
+                }
                 break;
 
             case 1:
-                seed1.GetComponent<Image>().material = materialDefault;
-                seed2.GetComponent<Image>().material = materialOpaco;
-                InvokeRepeating(nameof(SetCountdownSeed1), 0,1000000.0f);
+                if(!textContadorSeed1.gameObject.activeInHierarchy && !textContadorSeed2.gameObject.activeInHierarchy)
+                {
+                    ChangeSeedMaterial(seed1, materialDefault);
+                    ChangeSeedMaterial(seed2, materialOpaco);
+                    HUD_CoolDown auxCooldown = new HUD_CoolDown();
+                    StartCoroutine(auxCooldown.StartCountdown(textContadorSeed2));
+                }
+                else if (textContadorSeed1.gameObject.activeInHierarchy && !textContadorSeed2.gameObject.activeInHierarchy)
+                {
+                    ChangeSeedMaterial(seed2, materialDefault);
+                }
+                else
+                {
+
+                }
                 break;
 
             case 2:
                 seed1.GetComponent<Image>().material = materialDefault;
-                seed2.GetComponent<Image>().material = materialDefault;
+                seed2.GetComponent<Image>().material = materialDefault;         
                 break;
         }
     }
 
-    public void SetCountdownSeed1()
+    private void ChangeSeedMaterial(GameObject seed, Material material)
     {
-        textContadorSeed1.enabled = true;
-        Debug.Log(auxcount);
-        textContadorSeed1.text = $"{auxcount}";
-        auxcount--;
+        seed.GetComponent<Image>().material = material;
     }
 
     #endregion
