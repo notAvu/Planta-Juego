@@ -564,7 +564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -197.72, y: -146}
+  m_AnchoredPosition: {x: -332, y: -212}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &143578332
@@ -1181,7 +1181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -112, y: -32}
+  m_AnchoredPosition: {x: -11, y: -32}
   m_SizeDelta: {x: 56.5818, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516562961
@@ -1944,7 +1944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 122, y: -45.709}
+  m_AnchoredPosition: {x: 257, y: 44}
   m_SizeDelta: {x: 272.9014, y: 153.4182}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &760216340
@@ -2000,8 +2000,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2202,7 +2202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &804955860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2286,7 +2286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &893705348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2538,7 +2538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 530221349}
-  levelSceneName: SampleScene
+  levelSceneName: EscenaPlantilla
 --- !u!114 &1029494522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3287,7 +3287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 133, y: 46}
+  m_AnchoredPosition: {x: 263, y: -149}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204225134
@@ -3862,8 +3862,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 153, y: 102}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 265, y: 172}
+  m_SizeDelta: {x: 200, y: 51.2474}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1402585703
 MonoBehaviour:
@@ -3919,8 +3919,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3997,8 +3997,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -197.7216, y: -8.5693}
-  m_SizeDelta: {x: 189.8552, y: 222.0674}
+  m_AnchoredPosition: {x: -145, y: 8.8944}
+  m_SizeDelta: {x: 347.0287, y: 386.7254}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416598337
 MonoBehaviour:
@@ -4314,7 +4314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "T\xEDtulo"
+  m_text: EverGreen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
