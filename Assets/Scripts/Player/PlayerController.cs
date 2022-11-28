@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float VidaTotal;
     public float VidaActual;
     public string tagHiedra;
-    public string tagEnemigo;
+    public string tagCuervo;
     public string tagSalida;
     private MenuFinal menuFinal;
     #endregion
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(tagEnemigo))
+        if (collision.gameObject.CompareTag(tagCuervo))
         {
             //tras colisionar con el cuervo se reinicia el nivel.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
