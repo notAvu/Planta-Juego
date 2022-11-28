@@ -8,6 +8,8 @@ public class TeleportProjectile : MonoBehaviour
     private string playerTag;
     [SerializeField]
     private string groundTag;
+    [SerializeField]
+    private string enemyTag;
     private GameObject player;
     float playerYSizeOffset;
 
@@ -47,11 +49,15 @@ public class TeleportProjectile : MonoBehaviour
 
                     int angle = (int)Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
                     bool horizontalCollision = (angle == 0 || angle == 180) && collisionVector.magnitude>0.0001;
-                    if (hit.CompareTag(groundTag))
+                    if (hit.CompareTag(groundTag) )
                     {
                         if (!horizontalCollision)
                             player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
 
+                        Destroy(gameObject);
+                    }
+                    else if(hit.CompareTag(enemyTag))
+                    {
                         Destroy(gameObject);
                     }
                 }

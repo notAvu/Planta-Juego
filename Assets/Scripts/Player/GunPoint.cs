@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunPoint : MonoBehaviour
 {
     #region referencias de escena
-    [SerializeField]
+    //[SerializeField]
     private Camera mainCamera;
 
     [SerializeField]
@@ -41,6 +41,7 @@ public class GunPoint : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        mainCamera = Camera.allCameras[0];
     }
     private void Update()
     {
@@ -83,7 +84,7 @@ public class GunPoint : MonoBehaviour
         distanceVector = targetPoint - gunPivot.position;
         float angleDeg = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
 
-        gunHolder.GetComponent<SpriteRenderer>().flipX = angleDeg < 90f;
+        //gunHolder.GetComponent<SpriteRenderer>().flipX = angleDeg < 90f;
 
         gunPivot.rotation = Quaternion.AngleAxis(angleDeg, Vector3.forward);
     }
