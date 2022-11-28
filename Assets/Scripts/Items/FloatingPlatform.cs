@@ -7,7 +7,8 @@ public class FloatingPlatform: MonoBehaviour
     private Vector3 PosicionOriginal;
     private Rigidbody2D rb;
     private BoxCollider2D BoxC2D;
-    
+    public float DuracionPlataforma;
+    private bool SobrePlataforma;
 
     // Start is called before the first frame update
     void Start()
@@ -16,23 +17,34 @@ public class FloatingPlatform: MonoBehaviour
         PosicionOriginal = gameObject.GetComponent<Transform>().position;
         rb = GetComponent<Rigidbody2D>();
         BoxC2D=GetComponent<BoxCollider2D>();
+        SobrePlataforma = false;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    private void FixedUpdate()
+    {///Cuando SobrePlataforma es verdadero va restando tiempo  a la duracion de la plataforma
+        if (SobrePlataforma)
+        {
+            DuracionPlataforma -= Time.deltaTime;
+
+        }
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /// Al colisionar con el jugador cambia tu typo de cuerpo a Dynamic aumento su gravedad y le digo que es un trigger para que atraviese el suelo y lo destruyo a los 5s
+        /// Al colisionar con el jugador activa un bool y activa un temporizador cuando llega a cero  
+        /// cambia el  tipo de cuerpo de la plataforma  a Dynamic aumento su gravedad 
+        /// y le digo que es un trigger para que atraviese el suelo y lo destruyo a los 5s
         if (collision.gameObject.CompareTag("Player"))
         {
-
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            SobrePlataforma = true;
+            if (DuracionPlataforma <= 0)
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = 5;
             BoxC2D.isTrigger = true;
             Destroy(gameObject, 5);
+                 }
         }
     }
 
