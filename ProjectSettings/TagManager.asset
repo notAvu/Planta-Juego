@@ -8,6 +8,9 @@ TagManager:
   - Pared
   - Trigger
   - Vines
+  - Salida
+  - Cuervo
+  - Hiedra
   layers:
   - Default
   - TransparentFX
