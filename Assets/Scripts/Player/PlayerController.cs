@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Procesa el salto, si el jugador ha pulsado la tecla Espacio se aplicar� la fuerzaSalto con la direccion Vector2.up
+    /// Procesa el salto, si el jugador ha pulsado la tecla Espacio se aplicara la fuerzaSalto con la direccion Vector2.up
     /// </summary>
     private void ProcesarSalto()
     {
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Procesa el movimiento, si el jugador no esta en el suelo la variable restaVelocidad ser� mayor que 0, por lo que la velocidad horizontal disminuye
+    /// Procesa el movimiento, si el jugador no esta en el suelo la variable restaVelocidad sera mayor que 0, por lo que la velocidad horizontal disminuye
     /// </summary>
     private void ProcesarMovimiento()
     {
@@ -91,16 +91,16 @@ public class PlayerController : MonoBehaviour
     {
         if (movHorizontal > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
         else if (movHorizontal < 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
     }
 
     /// <summary>
-    /// Se crea un raycast, si los pies del jugador est�n tocando el suelo devolver� true, de lo contrario devolver� false
+    /// Se crea un raycast, si los pies del jugador estan tocando el suelo devolver� true, de lo contrario devolvera false
     /// </summary>
     /// <returns>Bool</returns>
     private bool EstaEnSuelo()

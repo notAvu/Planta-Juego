@@ -12,6 +12,8 @@ public class PlatformProjectile : MonoBehaviour
     private string groundTag;
     [SerializeField]
     private string playerTag;
+    [SerializeField]
+    private string enemyTag;
 
     #endregion
 
@@ -55,7 +57,6 @@ public class PlatformProjectile : MonoBehaviour
         {
         }
         Destroy(gameObject);
-
     }
     /// <summary>
     /// Reconoce las colisiones con las que puede impactar el objeto en la posicion indicada en un radio determinado y genera una plataforma en la posicion de impacto
@@ -78,6 +79,9 @@ public class PlatformProjectile : MonoBehaviour
                 bool horizontal = (int)angle == 0 || (int)angle == 180;
 
                 CrearPlataforma(horizontal, hit.ClosestPoint(position));
+            }else if (hit.CompareTag("Enemy"))
+            {
+                Destroy(gameObject);
             }
         }
     }
