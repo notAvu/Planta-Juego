@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public string tagCuervo;
     public string tagSalida;
     private MenuFinal menuFinal;
+    //public Animator animator;
     #endregion
 
     #region Contructores
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             rigid.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
         }
+            animador.SetBool("isJumped", !EstaEnSuelo());
     }
 
     /// <summary>
@@ -85,6 +87,7 @@ public class PlayerController : MonoBehaviour
             restaVelocidad = velocidad * 0.32f;
         }
         rigid.velocity = new Vector2(movHorizontal * (velocidad - restaVelocidad), rigid.velocity.y);
+        animador.SetFloat("velocidad", Mathf.Abs(rigid.velocity.x));
         ProcesaFlip(movHorizontal);
     }
 
