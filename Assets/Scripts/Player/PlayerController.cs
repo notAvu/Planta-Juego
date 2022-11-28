@@ -18,6 +18,14 @@ public class PlayerController : MonoBehaviour
     public float VidaActual;
     public string tagHiedra;
     public string tagEnemigo;
+    private int semillas = 2;
+
+    public int Semillas
+    {
+        get => semillas;
+        set => semillas = value;
+    }
+
     #endregion
 
     #region Contructores
