@@ -83,7 +83,7 @@ class Dats
 
     /// <summary>
     /// formato de cada linea 
-    /// LEVELNAME|X|NICK
+    /// LEVELNAME|XXXX|NICK
     /// Siendo LEVELNAME el nombre del nivel NICK el nomrbe del jugador y X la puntuación
     /// </summary>
     private List<string> rankingLines;
@@ -126,11 +126,29 @@ class Dats
 
     /// <summary>
     /// Establece una nueva lista de ranking
+    /// se comprueba que la puntuacion tenga el formato correcto asi no falla el orden
     /// </summary>
     /// <param name="rankingLine"></param>
     public void AddRankingLine(string rankingLine)
     {
-        this.rankingLines.Add(rankingLine);
+        
+        string[] subs = rankingLine.Split('|');
+        string puntuacion = subs[1];
+        if (puntuacion.Length < 4)
+        {
+            switch (puntuacion.Length){
+                case 1:
+                    puntuacion = "000" + puntuacion;
+                    break;
+                case 2:
+                    puntuacion = "00" + puntuacion;
+                    break;
+                case 3:
+                    puntuacion = "0" + puntuacion;
+                    break;
+            }
+        }
+        this.rankingLines.Add(subs[0]+"|"+puntuacion+"|"+subs[2]);
     }
 
     /// <summary>
