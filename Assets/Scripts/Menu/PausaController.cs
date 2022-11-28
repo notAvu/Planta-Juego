@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,9 +8,13 @@ public class PausaController : MonoBehaviour
 {
     #region variables
     [SerializeField] private GameObject pausaPanel;
+    [SerializeField] private GameObject rankingTab;
+    [SerializeField] private TextMeshProUGUI rankingText;
     public string menuSceneName;
     private bool gamePaused;
     private GameController gameController;
+    public RankingSaver rankingSaver;
+    private bool rankingShow;
     #endregion
 
 
@@ -19,6 +24,9 @@ public class PausaController : MonoBehaviour
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         gamePaused = false;
         pausaPanel.SetActive(false);
+        rankingTab.SetActive(false);
+        rankingShow = false;
+        rankingSaver = GameObject.Find("Ranking_Saver").GetComponent<RankingSaver>();
     }
 
     
@@ -35,6 +43,20 @@ public class PausaController : MonoBehaviour
             else
             {
                 PauseGame();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!gamePaused && !rankingShow)
+            {
+                ShowRanking();
+                rankingShow = true;
+            }
+            else
+            {
+                rankingTab.SetActive(false);
+                rankingShow = false;
             }
         }
     }
@@ -73,8 +95,8 @@ public class PausaController : MonoBehaviour
     /// </summary>
     public void OnButtonReset()
     {
-        gameController.ReiniciarNivel();
         ResumeGame();
+        gameController.ReiniciarNivel();
     }
 
     /// <summary>
@@ -86,6 +108,11 @@ public class PausaController : MonoBehaviour
         ResumeGame();
     }
 
-
+    public void ShowRanking()
+    {
+        rankingText.SetText(rankingSaver.ShowLevelRank(SceneManager.GetActiveScene().name, 15));
+        rankingTab.SetActive(true);
+        
+    }
 
 }

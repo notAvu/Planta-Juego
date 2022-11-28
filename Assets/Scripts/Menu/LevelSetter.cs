@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelSetter : MonoBehaviour
 {
     #region variables
     [SerializeField] private MenuController menu;
     public string levelSceneName;
-
+    public RankingSaver rankingSaver;
+    [SerializeField] private TextMeshProUGUI rankingText;
 
 
     #endregion
@@ -15,7 +18,7 @@ public class LevelSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rankingSaver = GameObject.Find("Ranking_Saver").GetComponent<RankingSaver>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,12 @@ public class LevelSetter : MonoBehaviour
     public void OnBotonPulsado()
     {
         menu.OnButtonLevel(levelSceneName);
+        ShowRanking(levelSceneName);
+    }
+
+    public void ShowRanking(string levelName)
+    {
+        rankingText.SetText(rankingSaver.ShowLevelRank(levelName,15));
     }
 
 

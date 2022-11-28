@@ -18,6 +18,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject creditsPanel;
     [Header("Texts")]
     [SerializeField] private Text txtPlayerName;
+    public RankingSaver rankingSaver;
 
     private string playerName;
     private string selectedScene;
@@ -32,6 +33,7 @@ public class MenuController : MonoBehaviour
         playerName = null;
         selectedScene = null;
         ActivatePanel(principalPanel);
+        rankingSaver = GameObject.Find("Ranking_Saver").GetComponent<RankingSaver>();
     }
 
     
@@ -93,6 +95,7 @@ public class MenuController : MonoBehaviour
         if (!string.IsNullOrEmpty(txtPlayerName.text))
         {
             playerName = txtPlayerName.text;
+            rankingSaver.setPlayerName(playerName);
         }
 
         if (!string.IsNullOrEmpty(txtPlayerName.text))
