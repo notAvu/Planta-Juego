@@ -18,12 +18,15 @@ public class PlayerController : MonoBehaviour
     public float VidaActual;
     public string tagHiedra;
     public string tagEnemigo;
+    public string tagSalida;
+    private MenuFinal menuFinal;
     #endregion
 
     #region Contructores
 
     private void Start()
     {
+        menuFinal = GameObject.Find("GameController").GetComponent<MenuFinal>();
         velocidad = 10f;
         fuerzaSalto = 6.8f;
         rigid = GetComponent<Rigidbody2D>();
@@ -152,6 +155,10 @@ public class PlayerController : MonoBehaviour
             //Si no toca la hiedra vuelve a velocidad inicial
             velocidad = 10f;
         }
+        if (collision.gameObject.CompareTag(tagSalida))
+        {
+            menuFinal.Salida();
+        }
 
 
     }
@@ -159,7 +166,7 @@ public class PlayerController : MonoBehaviour
     private void DañoHiedra()
     {
 
-        //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual
+        //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual (Pendiente de valores)
         velocidad = 8f;
         VidaActual = VidaActual - 1f;
 
