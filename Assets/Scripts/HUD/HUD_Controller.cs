@@ -13,6 +13,7 @@ public class HUD_Controller : MonoBehaviour
     [SerializeField] private Material materialOpaco, materialDefault;
     private float time;
     private PlayerController playerController;
+    private static int auxcount = 8;
 
     #endregion
 
@@ -31,6 +32,13 @@ public class HUD_Controller : MonoBehaviour
         StartCoroutine(SetSmoothTimeBar());
         //actualizar semillas
         SetPlayerSeeds();
+        if (auxcount <= 0)
+        {
+            CancelInvoke(nameof(SetCountdownSeed1));
+            auxcount = 8;
+            playerController.Semillas = 2;
+            textContadorSeed1.enabled = false;
+        }
     }
     #endregion
 
@@ -103,6 +111,7 @@ public class HUD_Controller : MonoBehaviour
             case 1:
                 seed1.GetComponent<Image>().material = materialDefault;
                 seed2.GetComponent<Image>().material = materialOpaco;
+                InvokeRepeating(nameof(SetCountdownSeed1), 0,1000000.0f);
                 break;
 
             case 2:
@@ -110,6 +119,14 @@ public class HUD_Controller : MonoBehaviour
                 seed2.GetComponent<Image>().material = materialDefault;
                 break;
         }
+    }
+
+    public void SetCountdownSeed1()
+    {
+        textContadorSeed1.enabled = true;
+        Debug.Log(auxcount);
+        textContadorSeed1.text = $"{auxcount}";
+        auxcount--;
     }
 
     #endregion
