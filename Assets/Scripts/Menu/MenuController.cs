@@ -74,7 +74,6 @@ public class MenuController : MonoBehaviour
     public void OnButtonCredits()
     {
         ActivatePanel(creditsPanel);
-
     }
 
     /// <summary>

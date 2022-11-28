@@ -10,14 +10,14 @@ public class PlayerController : MonoBehaviour
 
     private float velocidad, fuerzaSalto;
     private Rigidbody2D rigid;
-    private CapsuleCollider2D capCollider;
+    private Collider2D capCollider;
     private SpriteRenderer spriteRenderer;
     public LayerMask capaSuelo;
     private Animator animador;
     public float VidaTotal;
     public float VidaActual;
-    [SerializeField] private int semillas;
-    public int Semillas { get => semillas; set => semillas = value; }
+    public string tagHiedra;
+    public string tagEnemigo;
     #endregion
 
     #region Contructores
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         velocidad = 10f;
         fuerzaSalto = 6.8f;
         rigid = GetComponent<Rigidbody2D>();
-        capCollider = GetComponent<CapsuleCollider2D>();
+        capCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
         semillas = 2;
@@ -35,13 +35,25 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region M�todos privados
+    #region Metodos publicos
+
+    public void AñadirVida(float vida)
+    {
+
+        if (VidaActual < VidaTotal)
+        {
+            VidaActual += vida;
+        }
+    }
+
+    #endregion
+
+    #region Metodos privados
 
     private void Update()
     {
         ProcesarMovimiento();
         ProcesarSalto();
-        Reinicio();
 
         //AnimarJugador();
     }
@@ -126,28 +138,33 @@ public class PlayerController : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /*if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag(tagEnemigo))
         {
-
-        }*/
-    }
-    /// <summary>
-    /// Metodo llamado desde update para reiniciar la escena actual.
-    /// </summary>
-    private void Reinicio()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+            //tras colisionar con el cuervo se reinicia el nivel.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
-    public void AñadirVida(float vida){
 
-        if (VidaActual < VidaTotal) {
-            VidaActual += vida;
-            //Actualizar la barra de vida en el HUD 
-            GameObject.Find("HUD").GetComponent<HUD_Controller>().SetTimeBar(VidaActual / VidaTotal);
         }
+        else if (collision.gameObject.CompareTag(tagHiedra))
+        {
+            DañoHiedra();
+        }
+        else if (!collision.gameObject.CompareTag(tagHiedra))
+        {
+            //Si no toca la hiedra vuelve a velocidad inicial
+            velocidad = 10f;
+        }
+
+
     }
+
+    private void DañoHiedra()
+    {
+
+        //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual
+        velocidad = 8f;
+        VidaActual = VidaActual - 1f;
+
+    }
+
     #endregion
 }

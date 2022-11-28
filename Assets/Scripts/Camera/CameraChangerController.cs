@@ -30,7 +30,7 @@ public class CameraChangerController : MonoBehaviour
     /// Método que cambia la posición de la cámara en función del tamaño de la cámara, de la posición en la que está y 
     /// el lado por el que está saliendo el jugador
     /// </summary>
-    private void CambiaPosicionCamara()
+    public void CambiaPosicionCamara()
     {
         if (direccion.Equals("RIGHT"))
         {
