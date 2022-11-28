@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunPoint : MonoBehaviour
 {
     #region referencias de escena
-    [SerializeField]
+    //[SerializeField]
     private Camera mainCamera;
 
     [SerializeField]
@@ -13,50 +13,62 @@ public class GunPoint : MonoBehaviour
     [SerializeField]
     private Transform gunPivot;
     #endregion
-    #region 
-    [SerializeField]
-    private KeyCode launchButton;
-    [SerializeField]
-    private KeyCode switchProjectileButton;
+    #region input disparo
+
+    private float projectileOneAxisVal;//Valor del trigger o click del raton asociado al primer proyectil
+    private float projectileTwoAxisVal;//Valor del trigger o click del raton asociado al segundo proyectil
     #endregion
-    #region
+
     #region variables prefabs proyectiles
     [SerializeField]
     private GameObject[] availablePrefabs;
-
     private int selectedPrefabIndex;
 
+    private GameObject activeProjectile;
+
+    private bool chargingProjectile;
+
     private LineRenderer lineRenderer;
-    #endregion
+
+    [SerializeField]
+    List<string> tagsToIgnore;
+
     [SerializeField]
     private float launchForce; //Valor de ejemplo 500
-    private Vector3 distanceVector;
+    private Vector3 distanceVector; //vecrtor de la distancia entre el jugador y la posicion del raton
     #endregion
     #region eventos de Unity
-    private void Start()
+    private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        selectedPrefabIndex = 0;
+        mainCamera = Camera.allCameras[0];
     }
     private void Update()
     {
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKey(launchButton))
+
+        projectileOneAxisVal = Input.GetAxisRaw("Fire1");
+        projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
+        RotateGun(mousePosition);
+
+    }
+    private void FixedUpdate()
+    {
+        if (projectileOneAxisVal > 0 && activeProjectile == null)
         {
-            lineRenderer.enabled = true;
-            DrawProjectileTrajectory();
+            ChargeProjectile(0);
         }
-        if (Input.GetKeyUp(launchButton))
+        else if (projectileTwoAxisVal > 0 && activeProjectile == null)
         {
-            lineRenderer.enabled = false;
+            ChargeProjectile(1);
+        }
+        else if ((projectileOneAxisVal <= 0 || projectileTwoAxisVal <= 0) && chargingProjectile)
+        {
             LaunchProjectile();
         }
-        if (Input.GetKeyDown(switchProjectileButton))
-        {
-            SwitchProjectile();
-        }
-        RotateGun(mousePosition);
+        lineRenderer.enabled = chargingProjectile;
     }
+
     #endregion
     #region Metodos de lanzamiento
     /// <summary>
@@ -65,8 +77,15 @@ public class GunPoint : MonoBehaviour
     /// <param name="targetPoint">el vector posicion del raton</param>
     private void RotateGun(Vector3 targetPoint)
     {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.current;
+        }
         distanceVector = targetPoint - gunPivot.position;
         float angleDeg = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
+
+        //gunHolder.GetComponent<SpriteRenderer>().flipX = angleDeg < 90f;
+
         gunPivot.rotation = Quaternion.AngleAxis(angleDeg, Vector3.forward);
     }
     /// <summary>
@@ -74,11 +93,10 @@ public class GunPoint : MonoBehaviour
     /// </summary>
     private void LaunchProjectile()
     {
-        GameObject projectile = Instantiate(availablePrefabs[selectedPrefabIndex], gameObject.transform.position, Quaternion.identity);
+        activeProjectile = Instantiate(availablePrefabs[selectedPrefabIndex], gameObject.transform.position, Quaternion.identity);
         Vector2 direction = distanceVector.normalized;
-        projectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
-
-        //Debug.Log($"{direction.x}x {direction.y}y");
+        activeProjectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
+        chargingProjectile = false;
     }
     #endregion
     #region Dibujar trayectoria
@@ -93,7 +111,6 @@ public class GunPoint : MonoBehaviour
         lineRenderer.positionCount = steps;
         float projectileMass = availablePrefabs[selectedPrefabIndex].gameObject.GetComponent<Rigidbody2D>().mass;
         float velocity = (launchForce / projectileMass) * Time.fixedDeltaTime;
-        Debug.Log(projectileMass);
         Vector3 nextposition;
         for (int i = 0; i < steps; i++)
         {
@@ -109,7 +126,7 @@ public class GunPoint : MonoBehaviour
         }
     }
     /// <summary>
-    /// Metodo que calcula si en el siguiente paso de la linea de trayectoria colisionaria
+    /// Metodo que calcula si en el siguiente paso de la linea de trayectoria colisionaria ignorando las <see cref="tagsToIgnore"/>
     /// </summary>
     /// <param name="position">la posicion del siguiente punto</param>
     /// <param name="stepSize">el radio del area que detecta colisiones</param>
@@ -117,20 +134,32 @@ public class GunPoint : MonoBehaviour
     private bool LineCollided(Vector3 position, float stepSize)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, stepSize);
-
-        return hits.Length>0;
+        int numberOfHits = hits.Length;
+        foreach (Collider2D hit in hits)
+        {
+            if (tagsToIgnore.Contains(hit.tag))
+            {
+                Physics2D.IgnoreCollision(hit, availablePrefabs[selectedPrefabIndex].GetComponent<Collider2D>());
+                numberOfHits--;
+            }
+        }
+        Physics2D.queriesHitTriggers = false;
+        return numberOfHits > 0;
     }
     #endregion
     #region seleccionar proyectil
     /// <summary>
-    /// Cambia el proyectil a lanzar al siguiente del array de pryectiles
+    /// Cambia el proyectil seleccionado en funcion del indice indicado, lo carga y dibuja la trayectoria que va a seguir
     /// </summary>
-    private void SwitchProjectile()
+    /// <param name="index"></param>
+    private void ChargeProjectile(int index)
     {
-        selectedPrefabIndex++;
-        if(selectedPrefabIndex >= availablePrefabs.Length)
+        if (index < availablePrefabs.Length)
         {
-            selectedPrefabIndex = 0;
+            selectedPrefabIndex = index;
+
+            chargingProjectile = true;
+            DrawProjectileTrajectory();
         }
     }
     #endregion

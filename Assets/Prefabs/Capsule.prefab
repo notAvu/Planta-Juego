@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8441985106340218272}
   - component: {fileID: 863117590908780428}
   - component: {fileID: -7216058035077539488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,3 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTag: Player
   groundTag: Ground
+  enemyTag: Enemy

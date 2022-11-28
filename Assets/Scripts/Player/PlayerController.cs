@@ -10,41 +10,58 @@ public class PlayerController : MonoBehaviour
 
     private float velocidad, fuerzaSalto;
     private Rigidbody2D rigid;
-    private CapsuleCollider2D capCollider;
+    private Collider2D capCollider;
     private SpriteRenderer spriteRenderer;
     public LayerMask capaSuelo;
     private Animator animador;
     public float VidaTotal;
     public float VidaActual;
+    public string tagHiedra;
+    public string tagCuervo;
+    public string tagSalida;
+    private MenuFinal menuFinal;
     #endregion
 
     #region Contructores
 
     private void Start()
     {
+        menuFinal = GameObject.Find("GameController").GetComponent<MenuFinal>();
         velocidad = 10f;
         fuerzaSalto = 6.8f;
         rigid = GetComponent<Rigidbody2D>();
-        capCollider = GetComponent<CapsuleCollider2D>();
+        capCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
     }
 
     #endregion
 
-    #region M�todos privados
+    #region Metodos publicos
+
+    public void AñadirVida(float vida)
+    {
+
+        if (VidaActual < VidaTotal)
+        {
+            VidaActual += vida;
+        }
+    }
+
+    #endregion
+
+    #region Metodos privados
 
     private void Update()
     {
         ProcesarMovimiento();
         ProcesarSalto();
-        Reinicio();
 
         //AnimarJugador();
     }
 
     /// <summary>
-    /// Procesa el salto, si el jugador ha pulsado la tecla Espacio se aplicar� la fuerzaSalto con la direccion Vector2.up
+    /// Procesa el salto, si el jugador ha pulsado la tecla Espacio se aplicara la fuerzaSalto con la direccion Vector2.up
     /// </summary>
     private void ProcesarSalto()
     {
@@ -55,7 +72,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Procesa el movimiento, si el jugador no esta en el suelo la variable restaVelocidad ser� mayor que 0, por lo que la velocidad horizontal disminuye
+    /// Procesa el movimiento, si el jugador no esta en el suelo la variable restaVelocidad sera mayor que 0, por lo que la velocidad horizontal disminuye
     /// </summary>
     private void ProcesarMovimiento()
     {
@@ -77,16 +94,16 @@ public class PlayerController : MonoBehaviour
     {
         if (movHorizontal > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
         else if (movHorizontal < 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
     }
 
     /// <summary>
-    /// Se crea un raycast, si los pies del jugador est�n tocando el suelo devolver� true, de lo contrario devolver� false
+    /// Se crea un raycast, si los pies del jugador estan tocando el suelo devolver� true, de lo contrario devolvera false
     /// </summary>
     /// <returns>Bool</returns>
     private bool EstaEnSuelo()
@@ -123,26 +140,38 @@ public class PlayerController : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /*if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag(tagCuervo))
         {
-
-        }*/
-    }
-    /// <summary>
-    /// Metodo llamado desde update para reiniciar la escena actual.
-    /// </summary>
-    private void Reinicio()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+            //tras colisionar con el cuervo se reinicia el nivel.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
-    public void AñadirVida(float vida){
 
-        if (VidaActual < VidaTotal) {
-            VidaActual += vida;
         }
+        else if (collision.gameObject.CompareTag(tagHiedra))
+        {
+            DañoHiedra();
+        }
+        else if (!collision.gameObject.CompareTag(tagHiedra))
+        {
+            //Si no toca la hiedra vuelve a velocidad inicial
+            velocidad = 10f;
+        }
+        if (collision.gameObject.CompareTag(tagSalida))
+        {
+           
+            menuFinal.Salida();
+        }
+
+
     }
+
+    private void DañoHiedra()
+    {
+
+        //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual (Pendiente de valores)
+        velocidad = 8f;
+        VidaActual = VidaActual - 1f;
+
+    }
+
     #endregion
 }
