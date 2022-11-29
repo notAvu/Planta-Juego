@@ -178,14 +178,15 @@ public class PlayerController : MonoBehaviour
 
     public void TeleportTo(Vector2 position)
     {
+        animador.SetTrigger("Die");
         StartCoroutine(AnimateTp(position));
     }
     private IEnumerator AnimateTp(Vector2 TpPosition)
     {
-        animador.SetTrigger("Die");
+
         yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[3].length);
-        animador.SetBool("spawn", true);
         transform.position = TpPosition;
+        animador.SetBool("spawn", true);
         yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[4].length);
         animador.SetBool("spawn", false);//Se puede poner quizas en el de morir?
 
