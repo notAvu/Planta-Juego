@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Collider2D capCollider;
     private SpriteRenderer spriteRenderer;
     public LayerMask capaSuelo;
-    public Animator animador;
+    private Animator animador;
     public float VidaTotal;
     public float VidaActual;
     public string tagHiedra;
@@ -176,5 +176,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void TeleportTo(Vector2 position)
+    {
+        StartCoroutine(AnimateTp(position));
+    }
+    private IEnumerator AnimateTp(Vector2 TpPosition)
+    {
+        animador.SetTrigger("Die");
+        yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[3].length);
+        animador.SetBool("spawn", true);
+        transform.position = TpPosition;
+        yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[4].length);
+        animador.SetBool("spawn", false);//Se puede poner quizas en el de morir?
+
+
+    }
     #endregion
 }

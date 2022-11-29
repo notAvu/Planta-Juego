@@ -99,7 +99,6 @@ public class GunPoint : MonoBehaviour
         if (selectedPrefabIndex == 0)
         {
             availableSeeds--;
-            gunHolder.GetComponent<PlayerController>().animador.SetBool("isTp",true);
         }
         Vector2 direction = distanceVector.normalized;
         activeProjectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
