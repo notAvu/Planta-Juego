@@ -12,14 +12,14 @@ public class HUD_Controller : MonoBehaviour
     [SerializeField] private float maxTime = 60;
     [SerializeField] private Material materialOpaco, materialDefault;
     private float time;
-    private PlayerController playerController;
+    public GunPoint playerController;
 
     #endregion
 
     #region Unity methods
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         SetTimeBar((maxTime - time) / maxTime);
     }
 
@@ -30,12 +30,12 @@ public class HUD_Controller : MonoBehaviour
         //actualizar barra tiempo
         StartCoroutine(SetSmoothTimeBar());
         //actualizar semillas
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            playerController.semillas--;
-            Debug.Log(playerController.semillas);
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+            //playerController.availableSeeds--;
+            Debug.Log(playerController.availableSeeds);
             SetPlayerSeeds();
-        }
+        //}
       
     }
     #endregion
@@ -98,7 +98,7 @@ public class HUD_Controller : MonoBehaviour
     /// </summary>
     public void SetPlayerSeeds()
     {
-        switch (playerController.semillas)
+        switch (playerController.availableSeeds)
         {
             case 0:
                 if (textContadorSeed1.gameObject.activeInHierarchy && !textContadorSeed2.gameObject.activeInHierarchy)
@@ -129,7 +129,7 @@ public class HUD_Controller : MonoBehaviour
                 }
                 else
                 {
-
+                    Debug.Log("Jija");
                 }
                 break;
 

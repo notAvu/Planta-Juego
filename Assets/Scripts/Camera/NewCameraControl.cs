@@ -11,7 +11,7 @@ public class NewCameraControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             mainCamera.transform.parent = gameObject.transform;
-            mainCamera.transform.localPosition = Vector3.zero;
+            mainCamera.transform.localPosition = new Vector3(0,0,-10);
         }
     }
 }

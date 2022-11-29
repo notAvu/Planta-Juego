@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     private Animator animador;
     public float VidaTotal;
     public float VidaActual;
-    public int semillas = 2;
     public string tagHiedra;
     public string tagCuervo;
     public string tagSalida;
@@ -35,7 +34,6 @@ public class PlayerController : MonoBehaviour
         capCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
-        semillas = 2;
     }
 
     #endregion

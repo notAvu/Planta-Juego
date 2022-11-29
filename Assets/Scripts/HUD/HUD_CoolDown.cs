@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class HUD_CoolDown : MonoBehaviour
+public class HUD_CoolDown 
 {
     private int  countdown;
-    private PlayerController playerController;
+    private GunPoint playerController;
     private HUD_Controller hudController;
 
     public HUD_CoolDown()
     {
         this.countdown = 8;
-        this.playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        
         this.hudController = GameObject.Find("HUD").GetComponent<HUD_Controller>();
+        playerController = hudController.playerController;
     }
 
     public IEnumerator StartCountdown(TextMeshProUGUI countdowntxt)
@@ -30,7 +31,7 @@ public class HUD_CoolDown : MonoBehaviour
         {
             countdowntxt.gameObject.SetActive(false);
             countdown = 8;
-            playerController.semillas++;
+            playerController.availableSeeds++;
             hudController.SetPlayerSeeds();
         }
     }
