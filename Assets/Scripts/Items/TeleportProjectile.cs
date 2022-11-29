@@ -18,7 +18,7 @@ public class TeleportProjectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag(playerTag);
         playerYSizeOffset = (player.transform.localScale.y / 2) - 0.15f;
-        //GetComponent<Rigidbody2D>().
+        
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 
     }
@@ -48,15 +48,16 @@ public class TeleportProjectile : MonoBehaviour
                     Vector3 collisionVector = transform.position - collisionPoint;
 
                     int angle = (int)Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
-                    bool horizontalCollision = (angle == 0 || angle == 180) && collisionVector.magnitude>0.0001;
-                    if (hit.CompareTag(groundTag) )
+                    bool horizontalCollision = (angle == 0 || angle == 180) && collisionVector.magnitude > 0.0001;
+                    if (hit.CompareTag(groundTag))
                     {
                         if (!horizontalCollision)
-                            player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
-
+                        {
+                            player.GetComponent<PlayerController>().TeleportTo(new Vector2(transform.position.x, transform.position.y + playerYSizeOffset));
+                        }
                         Destroy(gameObject);
                     }
-                    else if(hit.CompareTag(enemyTag))
+                    else if (hit.CompareTag(enemyTag))
                     {
                         Destroy(gameObject);
                     }
@@ -64,5 +65,4 @@ public class TeleportProjectile : MonoBehaviour
             }
         }
     }
-
 }

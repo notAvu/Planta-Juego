@@ -17,13 +17,20 @@ public class PlayerController : MonoBehaviour
     public float VidaTotal;
     public float VidaActual;
     public string tagHiedra;
-    public string tagEnemigo;
+    public string tagCuervo;
+    public string tagSalida;
+    private MenuFinal menuFinal;
+
+    bool ableToMove;
+    //public Animator animator;
     #endregion
 
     #region Contructores
 
     private void Start()
     {
+        ableToMove = true;
+        menuFinal = GameObject.Find("GameController").GetComponent<MenuFinal>();
         velocidad = 10f;
         fuerzaSalto = 6.8f;
         rigid = GetComponent<Rigidbody2D>();
@@ -51,7 +58,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ProcesarMovimiento();
+        Debug.Log(ableToMove);
+        if (ableToMove)
+        {
+            ProcesarMovimiento();
+        }
+        else
+        {
+            rigid.velocity =new Vector2(0,rigid.velocity.y);
+        }
         ProcesarSalto();
 
         //AnimarJugador();
@@ -66,6 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             rigid.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
         }
+        animador.SetBool("isJumped", !EstaEnSuelo());
     }
 
     /// <summary>
@@ -80,6 +96,7 @@ public class PlayerController : MonoBehaviour
             restaVelocidad = velocidad * 0.32f;
         }
         rigid.velocity = new Vector2(movHorizontal * (velocidad - restaVelocidad), rigid.velocity.y);
+        animador.SetFloat("velocidad", Mathf.Abs(rigid.velocity.x));
         ProcesaFlip(movHorizontal);
     }
 
@@ -137,7 +154,7 @@ public class PlayerController : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(tagEnemigo))
+        if (collision.gameObject.CompareTag(tagCuervo))
         {
             //tras colisionar con el cuervo se reinicia el nivel.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -152,18 +169,40 @@ public class PlayerController : MonoBehaviour
             //Si no toca la hiedra vuelve a velocidad inicial
             velocidad = 10f;
         }
-
-
+        if (collision.gameObject.CompareTag(tagSalida))
+        {
+            menuFinal.Salida();
+        }
     }
 
     private void DañoHiedra()
     {
-
-        //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual
+        //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual (Pendiente de valores)
         velocidad = 8f;
         VidaActual = VidaActual - 1f;
 
     }
 
+    public void TeleportTo(Vector2 position)
+    {
+        animador.SetTrigger("Die");
+        animador.SetBool("spawn", true);
+        StartCoroutine(AnimateTp(position));
+        ableToMove = false;
+        AnimateSpawn();
+    }
+    private IEnumerator AnimateTp(Vector2 TpPosition)
+    {
+        yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[3].length);
+        transform.position = TpPosition;
+        StartCoroutine(AnimateSpawn());
+    }
+    private IEnumerator AnimateSpawn()
+    {
+        yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[4].length);
+        ableToMove = true;
+        Debug.Log("Cagaste");
+        animador.SetBool("spawn", false);//Se puede poner quizas en el de morir?
+    }
     #endregion
 }

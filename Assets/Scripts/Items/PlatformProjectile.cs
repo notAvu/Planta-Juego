@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformProjectile : MonoBehaviour
 {
-    //Se asociaria al prefab de la Semilla que creará la plataforma
+    //Se asociaria al prefab de la Semilla que crearï¿½ la plataforma
     #region Atributos
     public GameObject platformPrefab;
     private float offset;
@@ -51,9 +51,6 @@ public class PlatformProjectile : MonoBehaviour
         if (vertical)
         {
             newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
-        }
-        else
-        {
         }
         Destroy(gameObject);
     }
