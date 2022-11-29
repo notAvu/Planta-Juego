@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public string tagCuervo;
     public string tagSalida;
     private MenuFinal menuFinal;
+
+    bool ableToMove;
     //public Animator animator;
     #endregion
 
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        ableToMove = true;
         menuFinal = GameObject.Find("GameController").GetComponent<MenuFinal>();
         velocidad = 10f;
         fuerzaSalto = 6.8f;
@@ -55,7 +58,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ProcesarMovimiento();
+        Debug.Log(ableToMove);
+        if (ableToMove)
+        {
+            ProcesarMovimiento();
+        }
+        else
+        {
+            rigid.velocity =new Vector2(0,rigid.velocity.y);
+        }
         ProcesarSalto();
 
         //AnimarJugador();
@@ -70,7 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             rigid.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
         }
-            animador.SetBool("isJumped", !EstaEnSuelo());
+        animador.SetBool("isJumped", !EstaEnSuelo());
     }
 
     /// <summary>
@@ -160,16 +171,12 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag(tagSalida))
         {
-           
             menuFinal.Salida();
         }
-
-
     }
 
     private void DañoHiedra()
     {
-
         //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual (Pendiente de valores)
         velocidad = 8f;
         VidaActual = VidaActual - 1f;
@@ -180,17 +187,22 @@ public class PlayerController : MonoBehaviour
     {
         animador.SetTrigger("Die");
         StartCoroutine(AnimateTp(position));
+        ableToMove = false;
+        AnimateSpawn();
     }
     private IEnumerator AnimateTp(Vector2 TpPosition)
     {
-
         yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[3].length);
         transform.position = TpPosition;
         animador.SetBool("spawn", true);
+        StartCoroutine(AnimateSpawn());
+    }
+    private IEnumerator AnimateSpawn()
+    {
         yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[4].length);
+        ableToMove = true;
+        Debug.Log("Cagaste");
         animador.SetBool("spawn", false);//Se puede poner quizas en el de morir?
-
-
     }
     #endregion
 }

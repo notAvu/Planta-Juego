@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunPoint : MonoBehaviour
 {
     #region referencias de escena
-    //[SerializeField]
+    
     private Camera mainCamera;
 
     [SerializeField]
@@ -36,8 +36,8 @@ public class GunPoint : MonoBehaviour
     List<string> tagsToIgnore;
 
     [SerializeField]
-    private float launchForce; //Valor de ejemplo 500
-    private Vector3 distanceVector; //vecrtor de la distancia entre el jugador y la posicion del raton
+    private float launchForce; 
+    private Vector3 distanceVector; //vector de la distancia entre el jugador y la posicion del raton
     #endregion
     #region eventos de Unity
     private void Awake()
@@ -52,7 +52,6 @@ public class GunPoint : MonoBehaviour
         projectileOneAxisVal = Input.GetAxisRaw("Fire1");
         projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
         RotateGun(mousePosition);
-
     }
     private void FixedUpdate()
     {
@@ -163,7 +162,6 @@ public class GunPoint : MonoBehaviour
         if (index < availablePrefabs.Length)
         {
             selectedPrefabIndex = index;
-
             chargingProjectile = true;
             DrawProjectileTrajectory();
         }
