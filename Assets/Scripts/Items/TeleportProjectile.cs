@@ -18,7 +18,7 @@ public class TeleportProjectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag(playerTag);
         playerYSizeOffset = (player.transform.localScale.y / 2) - 0.15f;
-        //GetComponent<Rigidbody2D>().
+        
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 
     }
@@ -53,9 +53,7 @@ public class TeleportProjectile : MonoBehaviour
                     {
                         if (!horizontalCollision)
                         {
-                            player.GetComponent<Animator>().SetBool("spawn", true);
                             player.GetComponent<PlayerController>().TeleportTo(new Vector2(transform.position.x, transform.position.y + playerYSizeOffset));
-
                         }
                         Destroy(gameObject);
                     }

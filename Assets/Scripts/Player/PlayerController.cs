@@ -186,6 +186,7 @@ public class PlayerController : MonoBehaviour
     public void TeleportTo(Vector2 position)
     {
         animador.SetTrigger("Die");
+        animador.SetBool("spawn", true);
         StartCoroutine(AnimateTp(position));
         ableToMove = false;
         AnimateSpawn();
@@ -194,7 +195,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[3].length);
         transform.position = TpPosition;
-        animador.SetBool("spawn", true);
         StartCoroutine(AnimateSpawn());
     }
     private IEnumerator AnimateSpawn()
