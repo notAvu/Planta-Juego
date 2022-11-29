@@ -53,9 +53,6 @@ public class PlatformProjectile : MonoBehaviour
             newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
             newPlatform.transform.Rotate(0, 0, 90f);
         }
-        else
-        {
-        }
         Destroy(gameObject);
     }
     /// <summary>

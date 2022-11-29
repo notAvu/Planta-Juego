@@ -24,6 +24,8 @@ public class GunPoint : MonoBehaviour
     private GameObject[] availablePrefabs;
     private int selectedPrefabIndex;
 
+    public int availableSeeds;
+
     private GameObject activeProjectile;
 
     private bool chargingProjectile;
@@ -54,7 +56,7 @@ public class GunPoint : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (projectileOneAxisVal > 0 && activeProjectile == null)
+        if (projectileOneAxisVal > 0 && activeProjectile == null && availableSeeds > 0)
         {
             ChargeProjectile(0);
         }
@@ -94,6 +96,10 @@ public class GunPoint : MonoBehaviour
     private void LaunchProjectile()
     {
         activeProjectile = Instantiate(availablePrefabs[selectedPrefabIndex], gameObject.transform.position, Quaternion.identity);
+        if (selectedPrefabIndex == 0)
+        {
+            availableSeeds--;
+        }
         Vector2 direction = distanceVector.normalized;
         activeProjectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
         chargingProjectile = false;
