@@ -48,19 +48,18 @@ public class TeleportProjectile : MonoBehaviour
                     Vector3 collisionVector = transform.position - collisionPoint;
 
                     int angle = (int)Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
-                    bool horizontalCollision = (angle == 0 || angle == 180) && collisionVector.magnitude>0.0001;
+                    bool horizontalCollision = (angle == 0 || angle == 180) && collisionVector.magnitude > 0.0001;
                     if (hit.CompareTag(groundTag))
                     {
                         if (!horizontalCollision)
                         {
-                            player.GetComponent<PlayerController>().animador.SetBool("isTp",true);
-                            player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
-                            player.GetComponent<PlayerController>().animador.SetBool("spawn",true);
-                            player.GetComponent<PlayerController>().animador.SetBool("isTp",false);
+                            player.GetComponent<Animator>().SetBool("spawn", true);
+                            player.GetComponent<PlayerController>().TeleportTo(new Vector2(transform.position.x, transform.position.y + playerYSizeOffset));
+
                         }
                         Destroy(gameObject);
                     }
-                    else if(hit.CompareTag(enemyTag))
+                    else if (hit.CompareTag(enemyTag))
                     {
                         Destroy(gameObject);
                     }
@@ -68,13 +67,4 @@ public class TeleportProjectile : MonoBehaviour
             }
         }
     }
-    
-    private IEnumerator WaitForAnimation ( Animation animation )
-    {
-        do
-        {
-            yield return null;
-        } while ( animation.isPlaying );
-    }
-
 }
