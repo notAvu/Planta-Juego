@@ -11,9 +11,8 @@ public class HUD_CoolDown
 
     public HUD_CoolDown()
     {
-        this.countdown = 8;
-        
-        this.hudController = GameObject.Find("HUD").GetComponent<HUD_Controller>();
+        countdown = 8;
+        hudController = GameObject.Find("HUD").GetComponent<HUD_Controller>();
         playerController = hudController.playerController;
     }
 

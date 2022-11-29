@@ -13,13 +13,12 @@ public class HUD_Controller : MonoBehaviour
     [SerializeField] private Sprite defaultImage, usedImage;
     private float time;
     public GunPoint playerController;
-
     #endregion
 
     #region Unity methods
     void Start()
     {
-        //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        //Cambiar la barra de vida al comenzar
         SetTimeBar((maxTime - time) / maxTime);
     }
 
@@ -30,13 +29,7 @@ public class HUD_Controller : MonoBehaviour
         //actualizar barra tiempo
         StartCoroutine(SetSmoothTimeBar());
         //actualizar semillas
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-            //playerController.availableSeeds--;
-            Debug.Log(playerController.availableSeeds);
-            SetPlayerSeeds();
-        //}
-      
+        SetPlayerSeeds();
     }
     #endregion
 
@@ -75,7 +68,6 @@ public class HUD_Controller : MonoBehaviour
             timeBar.transform.localScale = new Vector3(currentScale, 1);
             yield return null;
         }
-
         if (currentScale <= 0)
         {
             timeBar.transform.localScale = new Vector3(0, 1);
@@ -86,7 +78,12 @@ public class HUD_Controller : MonoBehaviour
         }
     }
 
-    public void SetTimeBar(float normalizedValue)
+    /// <summary>
+    ///     <b>Cabecera: </b>public void SetTimeBar(float normalizedValue)
+    ///     <b>Descripción: </b> Cambia el tamnaño de la barra de vida con respecto al valor dado
+    /// </summary>
+    /// <param name="normalizedValue"> float con el tiempo normalizado</param>
+    private void SetTimeBar(float normalizedValue)
     {
         timeBar.transform.localScale = new Vector3(normalizedValue, 1.0f);
     }
@@ -140,10 +137,13 @@ public class HUD_Controller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    ///     <b>Cabecera: </b>private void ChangeSeedImage(GameObject seed, Sprite sprite)
+    ///     <b>Descripción: </b> Cambia el sprite de la imagen de las semillas
+    /// </summary>
     private void ChangeSeedImage(GameObject seed, Sprite sprite)
     {
         seed.GetComponent<Image>().sprite = sprite;
     }
-
     #endregion
 }
