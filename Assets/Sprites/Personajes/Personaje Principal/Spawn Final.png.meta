@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e05f7fae7c866994fb0188fed4ec0170
+guid: 92c2147973fc7e947a6d4b1745ae5f69
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,190 +128,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_0"
+      name: Spawn Final_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 68
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d2e65aa8de3bc0468abc58c90df122e
+      internalID: -2034616601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spawn Final_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 68
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e885ea5b482cc7948b3435be7575b369
+      internalID: -154761635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spawn Final_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 68
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16bd023d8d6b56144b2174594b8c34a5
+      internalID: -417851275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spawn Final_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 68
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 225876dacef6dce43b455a824dcb7307
+      internalID: 1158031965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spawn Final_4
       rect:
         serializedVersion: 2
         x: 9
         y: 36
-        width: 12
-        height: 23
+        width: 14
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa54e304e2705274b9cc587628d9fb91
-      internalID: -2050032423
+      spriteID: 8e81c0df390771a4f9b0674ed3a54002
+      internalID: 543301565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_1"
+      name: Spawn Final_5
       rect:
         serializedVersion: 2
         x: 41
         y: 36
-        width: 12
-        height: 23
+        width: 14
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d5cfa03d21aa0a46a0005615d779229
-      internalID: 1818041475
+      spriteID: 6b63d95242a9bb649ba5d092ed6b0ad6
+      internalID: -511323471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_2"
+      name: Spawn Final_6
       rect:
         serializedVersion: 2
-        x: 73
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c57e7c08a028e0d45b6410f45ffea30a
-      internalID: 1144168042
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_3"
-      rect:
-        serializedVersion: 2
-        x: 105
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e29a4cf7b166ca4396924d814ffb2d9
-      internalID: -1116950111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_4"
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ed1fe73dcde7b24393bb923fad3fe97
-      internalID: -1694139208
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_5"
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be597411b94237649b587f5f2fe232a5
-      internalID: 1690445387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_6"
-      rect:
-        serializedVersion: 2
-        x: 200
+        x: 72
         y: 36
         width: 14
-        height: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6718689386179a34aa5b58338a9cc9df
-      internalID: -531324404
+      spriteID: 80554e381c1658542baa98428968c7da
+      internalID: 1196317795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_7"
+      name: Spawn Final_7
       rect:
         serializedVersion: 2
-        x: 232
+        x: 104
         y: 36
         width: 14
-        height: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4641e10d109f9944e8a98d221a077944
-      internalID: 1065714866
+      spriteID: 580c90f9aadebd242918b5d5c5728462
+      internalID: 306935045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Plantita Spawn (Forma F\xE1cil)_8"
+      name: Spawn Final_8
       rect:
         serializedVersion: 2
         x: 8
         y: 4
         width: 14
-        height: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fa8a3f4220611d4e933b79b8e5fa248
-      internalID: -2001939993
+      spriteID: 3340f09c0eca52941a37ade5055d7d1c
+      internalID: -1471106574
       vertices: []
       indices: 
       edges: []
@@ -327,15 +327,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "Plantita Spawn (Forma F\xE1cil)_2": 1144168042
-      "Plantita Spawn (Forma F\xE1cil)_8": -2001939993
-      "Plantita Spawn (Forma F\xE1cil)_0": -2050032423
-      "Plantita Spawn (Forma F\xE1cil)_4": -1694139208
-      "Plantita Spawn (Forma F\xE1cil)_1": 1818041475
-      "Plantita Spawn (Forma F\xE1cil)_6": -531324404
-      "Plantita Spawn (Forma F\xE1cil)_3": -1116950111
-      "Plantita Spawn (Forma F\xE1cil)_5": 1690445387
-      "Plantita Spawn (Forma F\xE1cil)_7": 1065714866
+      Spawn Final_0: -2034616601
+      Spawn Final_6: 1196317795
+      Spawn Final_3: 1158031965
+      Spawn Final_5: -511323471
+      Spawn Final_4: 543301565
+      Spawn Final_8: -1471106574
+      Spawn Final_2: -417851275
+      Spawn Final_1: -154761635
+      Spawn Final_7: 306935045
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 026408d8c2d4ea245853a5d029992df6
+guid: 63cb181794fbcf545907c158f57e28ce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plantita Idle_0
+      name: Idle Final_0
       rect:
         serializedVersion: 2
         x: 8
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4f27d39685d66e4f99eb4d46bf152cc
-      internalID: -1294084779
+      spriteID: 5006dba2a82d84442bd934eae2513168
+      internalID: 417035639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Idle_1
+      name: Idle Final_1
       rect:
         serializedVersion: 2
         x: 40
         y: 4
         width: 14
-        height: 23
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fddfe86188078e44b98dbb93d10dfab2
-      internalID: -1136644183
+      spriteID: 87f3b670cb5890b4ab59b58a018776d1
+      internalID: -1259974650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Idle_2
+      name: Idle Final_2
       rect:
         serializedVersion: 2
         x: 72
         y: 4
         width: 14
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de20e36cb5d92364d9bf69d45b87e850
-      internalID: 621029374
+      spriteID: 81f5a7837422bca43aa384f64aa11bf8
+      internalID: 1368974004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Idle_3
+      name: Idle Final_3
       rect:
         serializedVersion: 2
         x: 104
         y: 4
         width: 14
-        height: 23
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b605091f170929d4cb8ae218ec7e2f90
-      internalID: -1760304708
+      spriteID: fd7985ae77482404a9175916086f852f
+      internalID: -1217399562
       vertices: []
       indices: 
       edges: []
@@ -222,10 +222,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Plantita Idle_0: -1294084779
-      Plantita Idle_3: -1760304708
-      Plantita Idle_2: 621029374
-      Plantita Idle_1: -1136644183
+      Idle Final_2: 1368974004
+      Idle Final_3: -1217399562
+      Idle Final_1: -1259974650
+      Idle Final_0: 417035639
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

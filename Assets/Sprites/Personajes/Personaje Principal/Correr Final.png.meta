@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9a3892cad3a969c449a1ac095fcb597b
+guid: c45c84909dec00d4ab6156f7575b14b8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,190 +128,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plantita Dead_0
+      name: Correr Final_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 36
-        width: 14
-        height: 23
+        x: 5
+        y: 68
+        width: 18
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbd20c478643e3347939388833fbb3bb
-      internalID: -1319963429
+      spriteID: 4bfa9b8b6a47dc74fb86f1f042ad9993
+      internalID: 326712901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Dead_1
+      name: Correr Final_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 36
-        width: 14
-        height: 23
+        x: 39
+        y: 68
+        width: 18
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5652a40f5386f840941e114e0ed96d3
-      internalID: -1379668203
+      spriteID: 20d55dfb9eb228b4cb3c9dbac256b056
+      internalID: -406429501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Dead_2
+      name: Correr Final_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 68
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0da369528870d429ace4e290fe7662
+      internalID: 198304017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_3
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 68
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21a77efb23be1a74eb35af96b981f63b
+      internalID: 1386419989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_4
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 36
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3db1acce8399f8f41a48fd9830969dc7
+      internalID: -2017411719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_5
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 36
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965fccb96d9fdfd4f9d53db5717eff55
+      internalID: -1111084337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_6
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 36
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0768dda18e37a2940a6a4730e44bfc3b
+      internalID: -447866698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_7
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 36
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb29c5ae70570649a6a14272902df04
+      internalID: -1530505613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 4
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca64af25be246bf4e95fb85bf56a08a4
+      internalID: 1898256430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_9
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 4
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18ff9ff47b3e2dd42b9197803eeebe7a
+      internalID: 1563645987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_10
       rect:
         serializedVersion: 2
         x: 72
-        y: 36
-        width: 14
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c7ca26b79bbd1234e8e6ec10294e6e96
-      internalID: 698685537
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Dead_3
-      rect:
-        serializedVersion: 2
-        x: 105
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0bdd87432f9e334ab78e1b481780696
-      internalID: 31975347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Dead_4
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f4d712b610c2ff4ca9ed36b13b46166
-      internalID: -177823951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Dead_5
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc2fea29ce6d762459cd261798ef6f1d
-      internalID: -174299955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Dead_6
-      rect:
-        serializedVersion: 2
-        x: 201
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c31efa1dafcdf54fb8a064712a9ca61
-      internalID: -2007104136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Dead_7
-      rect:
-        serializedVersion: 2
-        x: 233
-        y: 36
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2fee5b27c7d00c54d93ca08dbce9715f
-      internalID: 1889769612
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Dead_8
-      rect:
-        serializedVersion: 2
-        x: 9
         y: 4
-        width: 12
-        height: 23
+        width: 18
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14e209ff0488d4c47ab6c3c038fbeb2d
-      internalID: -2139232459
+      spriteID: 375b57c904f9f0449aadc97f8e91a065
+      internalID: -646238734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Correr Final_11
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 4
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1440db7e5babea04d849e8d2410d1f85
+      internalID: -1449552123
       vertices: []
       indices: 
       edges: []
@@ -327,15 +390,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Plantita Dead_3: 31975347
-      Plantita Dead_4: -177823951
-      Plantita Dead_5: -174299955
-      Plantita Dead_6: -2007104136
-      Plantita Dead_8: -2139232459
-      Plantita Dead_7: 1889769612
-      Plantita Dead_0: -1319963429
-      Plantita Dead_1: -1379668203
-      Plantita Dead_2: 698685537
+      Correr Final_10: -646238734
+      Correr Final_7: -1530505613
+      Correr Final_8: 1898256430
+      Correr Final_4: -2017411719
+      Correr Final_2: 198304017
+      Correr Final_6: -447866698
+      Correr Final_11: -1449552123
+      Correr Final_3: 1386419989
+      Correr Final_9: 1563645987
+      Correr Final_1: -406429501
+      Correr Final_0: 326712901
+      Correr Final_5: -1111084337
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

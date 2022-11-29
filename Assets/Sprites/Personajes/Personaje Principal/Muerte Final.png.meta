@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 875ea2005754f4b4ca50ad05b73e7524
+guid: 986b36e9323b671429f4d2f7a1f2179e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,54 +128,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plantita Run_0
+      name: Muerte Final_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 36
-        width: 18
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 821fc56ffd0682a4f8b8438db58de2c6
-      internalID: -1144453937
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Run_1
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 36
-        width: 15
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5bc28165c913a9945bf6eab1511d10da
-      internalID: -25435047
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Run_2
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 36
-        width: 13
+        x: 8
+        y: 68
+        width: 14
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,20 +142,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8def78ab57bbb5340b160ac34aae7285
-      internalID: -866772895
+      spriteID: fea4f30dfdff9f8419d1d8e84c36e202
+      internalID: 877765501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Run_3
+      name: Muerte Final_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 68
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e059592ddd4e9054c8bd1059dedbc2b4
+      internalID: -1690218390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muerte Final_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 68
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4af0a224215e1c344890cfc8f2beb4b4
+      internalID: 1036988333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muerte Final_3
       rect:
         serializedVersion: 2
         x: 105
-        y: 36
-        width: 13
-        height: 24
+        y: 68
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed3d32fa5c6c64447875cec11d6cf47b
-      internalID: -2112281103
+      spriteID: a46454e5bf1ecf347af22c060d360312
+      internalID: -799609590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Run_4
+      name: Muerte Final_4
       rect:
         serializedVersion: 2
-        x: 137
+        x: 9
         y: 36
-        width: 15
-        height: 26
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98b463a1cf7ca56428d5eab0796d0dba
-      internalID: -1689753956
+      spriteID: 57369fbda6f266e4ea50d87c6d6c2679
+      internalID: -92186901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Run_5
+      name: Muerte Final_5
       rect:
         serializedVersion: 2
-        x: 167
+        x: 41
         y: 36
-        width: 15
-        height: 25
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20c57797f16da8a49b7e052d6a8ceb2c
-      internalID: -1840135746
+      spriteID: f8dbedff28717b047895ea3f12fb43e2
+      internalID: 1739810275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Run_6
+      name: Muerte Final_6
       rect:
         serializedVersion: 2
-        x: 197
+        x: 73
         y: 36
-        width: 18
-        height: 24
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c8341f198d295f4aadcb1ade8b17862
-      internalID: -2138434599
+      spriteID: 22edac72524110c448504d9acc158043
+      internalID: -1206728345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Run_7
+      name: Muerte Final_7
       rect:
         serializedVersion: 2
-        x: 231
+        x: 104
         y: 36
-        width: 15
-        height: 22
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,20 +289,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e313553757c3e7748b3b59d5e8c22461
-      internalID: 1681650125
+      spriteID: 8bfdbb2da5318ec47a5980d6601a8d47
+      internalID: -1064298209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plantita Run_8
+      name: Muerte Final_8
       rect:
         serializedVersion: 2
         x: 9
         y: 4
-        width: 13
-        height: 23
+        width: 12
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,71 +310,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5df9057c04a5224ab3051a2cc9deddd
-      internalID: -124140770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Run_9
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 4
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cfa001aaf062aac4281da8f05b877382
-      internalID: -1370927980
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Run_10
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 4
-        width: 15
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc4f6076ecba4444da0cfb3e410016d3
-      internalID: 154042464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plantita Run_11
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 4
-        width: 15
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: baa633fdba119d8499a3899eb8f46b72
-      internalID: 1971877442
+      spriteID: beebe2ac2627e5346b0181c5e3cadc0e
+      internalID: -1538054483
       vertices: []
       indices: 
       edges: []
@@ -390,18 +327,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Plantita Run_5: -1840135746
-      Plantita Run_10: 154042464
-      Plantita Run_0: -1144453937
-      Plantita Run_11: 1971877442
-      Plantita Run_8: -124140770
-      Plantita Run_2: -866772895
-      Plantita Run_6: -2138434599
-      Plantita Run_1: -25435047
-      Plantita Run_4: -1689753956
-      Plantita Run_3: -2112281103
-      Plantita Run_9: -1370927980
-      Plantita Run_7: 1681650125
+      Muerte Final_2: 1036988333
+      Muerte Final_5: 1739810275
+      Muerte Final_4: -92186901
+      Muerte Final_3: -799609590
+      Muerte Final_1: -1690218390
+      Muerte Final_0: 877765501
+      Muerte Final_6: -1206728345
+      Muerte Final_8: -1538054483
+      Muerte Final_7: -1064298209
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
