@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class FloatingPlatform: MonoBehaviour
@@ -30,7 +31,7 @@ public class FloatingPlatform: MonoBehaviour
         }
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         /// Al colisionar con el jugador activa un bool y activa un temporizador cuando llega a cero  
         /// cambia el  tipo de cuerpo de la plataforma  a Dynamic aumento su gravedad 
@@ -40,14 +41,24 @@ public class FloatingPlatform: MonoBehaviour
             SobrePlataforma = true;
             if (DuracionPlataforma <= 0)
             {
-                rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.gravityScale = 5;
-            BoxC2D.isTrigger = true;
-            Destroy(gameObject, 5);
+                Modificarplataforma();
                  }
         }
-    }
+        else
+        {
+            BoxC2D.isTrigger = true;
 
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Modificarplataforma();
+        }
+        
+
+    }
 
     /// <summary>
     /// Cuando es destruido llama al GameController para volver a invocarlo en el mismo lugar pasandole la posicion Original
@@ -57,6 +68,14 @@ public class FloatingPlatform: MonoBehaviour
         gameObject.GetComponent<GameController>().ReponerPlataforma(PosicionOriginal);
     }
 
+    public void Modificarplataforma() {
+
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gravityScale = 2;
+       
+        Destroy(gameObject, 5);
+
+    }
  
 
 }
