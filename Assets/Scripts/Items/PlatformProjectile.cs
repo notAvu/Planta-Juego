@@ -51,7 +51,6 @@ public class PlatformProjectile : MonoBehaviour
         if (vertical)
         {
             newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
-            newPlatform.transform.Rotate(0, 0, 90f);
         }
         else
         {
