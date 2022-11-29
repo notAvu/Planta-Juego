@@ -7,7 +7,7 @@ public class GunPoint : MonoBehaviour
     #region referencias de escena
     
     private Camera mainCamera;
-    public SpriteRenderer sprite;
+    //public SpriteRenderer sprite;
     [SerializeField]
     private Transform gunHolder;
     [SerializeField]

@@ -198,6 +198,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[3].length);
         transform.position = TpPosition;
+        rigid.velocity = Vector2.zero;
         StartCoroutine(AnimateSpawn());
     }
     private IEnumerator AnimateSpawn()

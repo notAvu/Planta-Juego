@@ -11,6 +11,7 @@ TagManager:
   - Hiedra
   - Enemy
   - Salida
+  - Hood
   layers:
   - Default
   - TransparentFX
