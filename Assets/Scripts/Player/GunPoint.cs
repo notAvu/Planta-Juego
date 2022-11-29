@@ -111,7 +111,7 @@ public class GunPoint : MonoBehaviour
     private void DrawProjectileTrajectory()
     {
         float simulationDuration = 3f;
-        float stepInterval = 0.05f;
+        float stepInterval = 0.015f;
         int steps = (int)(simulationDuration / stepInterval);
         lineRenderer.positionCount = steps;
         float projectileMass = availablePrefabs[selectedPrefabIndex].gameObject.GetComponent<Rigidbody2D>().mass;

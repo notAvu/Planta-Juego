@@ -21,7 +21,9 @@ public class PlayerController : MonoBehaviour
     public string tagSalida;
     private MenuFinal menuFinal;
 
-    bool ableToMove;
+    public GameObject gun; 
+
+    private bool ableToMove;
     //public Animator animator;
     #endregion
 
@@ -180,12 +182,12 @@ public class PlayerController : MonoBehaviour
         //se revisa si está tocando la hiedra para reducir la velocidad e ir disminuyendo la vida actual (Pendiente de valores)
         velocidad = 8f;
         VidaActual = VidaActual - 1f;
-
     }
 
     public void TeleportTo(Vector2 position)
     {
         animador.SetTrigger("Die");
+        gun.GetComponent<SpriteRenderer>().enabled = false;
         animador.SetBool("spawn", true);
         StartCoroutine(AnimateTp(position));
         ableToMove = false;
@@ -202,7 +204,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[4].length);
         ableToMove = true;
         Debug.Log("Cagaste");
-        animador.SetBool("spawn", false);//Se puede poner quizas en el de morir?
+        animador.SetBool("spawn", false);
+        gun.GetComponent<SpriteRenderer>().enabled = true;
     }
     #endregion
 }
