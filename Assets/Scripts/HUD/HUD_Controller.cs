@@ -10,7 +10,7 @@ public class HUD_Controller : MonoBehaviour
     [SerializeField] private GameObject timeBar, seed1, seed2;
     [SerializeField] private TextMeshProUGUI textTime, textContadorSeed1, textContadorSeed2;
     [SerializeField] private float maxTime = 60;
-    [SerializeField] private Material materialOpaco, materialDefault;
+    [SerializeField] private Sprite defaultImage, usedImage;
     private float time;
     public GunPoint playerController;
 
@@ -103,13 +103,13 @@ public class HUD_Controller : MonoBehaviour
             case 0:
                 if (textContadorSeed1.gameObject.activeInHierarchy && !textContadorSeed2.gameObject.activeInHierarchy)
                 {
-                    ChangeSeedMaterial(seed2, materialOpaco);
+                    ChangeSeedImage(seed2, usedImage);
                     HUD_CoolDown auxCooldown = new HUD_CoolDown();
                     StartCoroutine(auxCooldown.StartCountdown(textContadorSeed2));
                 }
                 else if (!textContadorSeed1.gameObject.activeInHierarchy && textContadorSeed2.gameObject.activeInHierarchy)
                 {
-                    ChangeSeedMaterial(seed1, materialOpaco);
+                    ChangeSeedImage(seed1, usedImage);
                     HUD_CoolDown auxCooldown = new HUD_CoolDown();
                     StartCoroutine(auxCooldown.StartCountdown(textContadorSeed1));
                 }
@@ -118,31 +118,31 @@ public class HUD_Controller : MonoBehaviour
             case 1:
                 if(!textContadorSeed1.gameObject.activeInHierarchy && !textContadorSeed2.gameObject.activeInHierarchy)
                 {
-                    ChangeSeedMaterial(seed1, materialDefault);
-                    ChangeSeedMaterial(seed2, materialOpaco);
+                    ChangeSeedImage(seed1, defaultImage);
+                    ChangeSeedImage(seed2, usedImage);
                     HUD_CoolDown auxCooldown = new HUD_CoolDown();
                     StartCoroutine(auxCooldown.StartCountdown(textContadorSeed2));
                 }
                 else if (textContadorSeed1.gameObject.activeInHierarchy && !textContadorSeed2.gameObject.activeInHierarchy)
                 {
-                    ChangeSeedMaterial(seed2, materialDefault);
+                    ChangeSeedImage(seed2, defaultImage);
                 }
                 else
                 {
-                    Debug.Log("Jija");
+                    ChangeSeedImage(seed1, defaultImage);
                 }
                 break;
 
             case 2:
-                seed1.GetComponent<Image>().material = materialDefault;
-                seed2.GetComponent<Image>().material = materialDefault;         
+                ChangeSeedImage(seed1, defaultImage);
+                ChangeSeedImage(seed2, defaultImage);
                 break;
         }
     }
 
-    private void ChangeSeedMaterial(GameObject seed, Material material)
+    private void ChangeSeedImage(GameObject seed, Sprite sprite)
     {
-        seed.GetComponent<Image>().material = material;
+        seed.GetComponent<Image>().sprite = sprite;
     }
 
     #endregion
