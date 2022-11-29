@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Collider2D capCollider;
     private SpriteRenderer spriteRenderer;
     public LayerMask capaSuelo;
-    private Animator animador;
+    public Animator animador;
     public float VidaTotal;
     public float VidaActual;
     public string tagHiedra;
