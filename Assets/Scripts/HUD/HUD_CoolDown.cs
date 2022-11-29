@@ -6,14 +6,14 @@ using UnityEngine;
 public class HUD_CoolDown 
 {
     private int  countdown;
-    private GunPoint playerController;
+    private GunPoint playerGun;
     private HUD_Controller hudController;
 
     public HUD_CoolDown()
     {
         countdown = 8;
         hudController = GameObject.Find("HUD").GetComponent<HUD_Controller>();
-        playerController = hudController.playerController;
+        playerGun = hudController.playerGun;
     }
 
     public IEnumerator StartCountdown(TextMeshProUGUI countdowntxt)
@@ -30,7 +30,7 @@ public class HUD_CoolDown
         {
             countdowntxt.gameObject.SetActive(false);
             countdown = 8;
-            playerController.availableSeeds++;
+            playerGun.availableSeeds++;
             hudController.SetPlayerSeeds();
         }
     }

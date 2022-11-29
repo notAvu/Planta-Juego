@@ -12,7 +12,8 @@ public class HUD_Controller : MonoBehaviour
     [SerializeField] private float maxTime = 60;
     [SerializeField] private Sprite defaultImage, usedImage;
     private float time;
-    public GunPoint playerController;
+    public PlayerController playerController;
+    public GunPoint playerGun;
     #endregion
 
     #region Unity methods
@@ -83,7 +84,7 @@ public class HUD_Controller : MonoBehaviour
     ///     <b>Descripción: </b> Cambia el tamnaño de la barra de vida con respecto al valor dado
     /// </summary>
     /// <param name="normalizedValue"> float con el tiempo normalizado</param>
-    private void SetTimeBar(float normalizedValue)
+    public void SetTimeBar(float normalizedValue)
     {
         timeBar.transform.localScale = new Vector3(normalizedValue, 1.0f);
     }
@@ -95,7 +96,7 @@ public class HUD_Controller : MonoBehaviour
     /// </summary>
     public void SetPlayerSeeds()
     {
-        switch (playerController.availableSeeds)
+        switch (playerGun.availableSeeds)
         {
             case 0:
                 if (textContadorSeed1.gameObject.activeInHierarchy && !textContadorSeed2.gameObject.activeInHierarchy)

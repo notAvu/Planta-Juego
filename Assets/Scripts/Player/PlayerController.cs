@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public string tagCuervo;
     public string tagSalida;
     private MenuFinal menuFinal;
-
+    private HUD_Controller hood;
     public GameObject gun; 
 
     private bool ableToMove;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         ableToMove = true;
+        hood = GameObject.FindGameObjectWithTag("Hood").GetComponent<HUD_Controller>();
         menuFinal = GameObject.Find("GameController").GetComponent<MenuFinal>();
         velocidad = 10f;
         fuerzaSalto = 6.8f;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
         if (VidaActual < VidaTotal)
         {
             VidaActual += vida;
+            hood.SetTimeBar(VidaActual / VidaTotal);
         }
     }
 
@@ -60,7 +62,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(ableToMove);
         if (ableToMove)
         {
             ProcesarMovimiento();
@@ -203,7 +204,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(animador.runtimeAnimatorController.animationClips[4].length);
         ableToMove = true;
-        Debug.Log("Cagaste");
         animador.SetBool("spawn", false);
         gun.GetComponent<SpriteRenderer>().enabled = true;
     }

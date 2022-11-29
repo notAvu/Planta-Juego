@@ -219,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6191759054534425966, guid: fdd2442342aaf4e49b7d21c6a592d852, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8032042
+      value: -0.73
       objectReference: {fileID: 0}
     - target: {fileID: 6191759054534425966, guid: fdd2442342aaf4e49b7d21c6a592d852, type: 3}
       propertyPath: m_LocalPosition.z
@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 286500523}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SuelosParedes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1228,6 +1228,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &965256916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6191759054534425938, guid: fdd2442342aaf4e49b7d21c6a592d852, type: 3}
+  m_PrefabInstance: {fileID: 250758025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965256908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3117048bc873314cbfa31d9bd84a4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &965747854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,6 +2165,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6225750678188563173, guid: 42ee82d2ca1809f41aec695aa6519c63, type: 3}
+      propertyPath: playerGun
+      value: 
+      objectReference: {fileID: 1365778908}
+    - target: {fileID: 6225750678188563173, guid: 42ee82d2ca1809f41aec695aa6519c63, type: 3}
       propertyPath: usedImage
       value: 
       objectReference: {fileID: -295001461, guid: 89d3c5676160abe4184fa35ed352487d, type: 3}
@@ -2164,7 +2179,7 @@ PrefabInstance:
     - target: {fileID: 6225750678188563173, guid: 42ee82d2ca1809f41aec695aa6519c63, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 1365778908}
+      objectReference: {fileID: 965256916}
     - target: {fileID: 6225750678188563173, guid: 42ee82d2ca1809f41aec695aa6519c63, type: 3}
       propertyPath: textContadorSeed2
       value: 
@@ -2370,7 +2385,7 @@ GameObject:
   - component: {fileID: 2082241105}
   - component: {fileID: 2082241106}
   - component: {fileID: 2082241107}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pared
   m_TagString: Ground
   m_Icon: {fileID: 0}
