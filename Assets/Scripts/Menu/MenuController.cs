@@ -17,10 +17,19 @@ public class MenuController : MonoBehaviour
     //creditos
     [SerializeField] private GameObject creditsPanel;
     [Header("Texts")]
+    //texto del nombre del jugador
     [SerializeField] private Text txtPlayerName;
+    /// <summary>
+    /// Referencia al objeto de rankigSacer
+    /// </summary>
     public RankingSaver rankingSaver;
-
+    /// <summary>
+    /// nombre del jugador
+    /// </summary>
     private string playerName;
+    /// <summary>
+    /// escena seleccionada
+    /// </summary>
     private string selectedScene;
     
     #endregion

@@ -7,18 +7,45 @@ using UnityEngine.SceneManagement;
 public class PausaController : MonoBehaviour
 {
     #region variables
+    /// <summary>
+    /// Panel de pausa
+    /// </summary>
     [SerializeField] private GameObject pausaPanel;
+    /// <summary>
+    /// Panel con el ranking
+    /// </summary>
     [SerializeField] private GameObject rankingTab;
+    /// <summary>
+    /// Texto en el que se muestra el ranking
+    /// </summary>
     [SerializeField] private TextMeshProUGUI rankingText;
+    /// <summary>
+    /// Escena del menu
+    /// </summary>
     public string menuSceneName;
+    /// <summary>
+    /// Si el juego esta pausado o no
+    /// </summary>
     private bool gamePaused;
+    /// <summary>
+    /// Objeto que contiene el control del juego
+    /// </summary>
     private GameController gameController;
+    /// <summary>
+    /// objeto RankingSaver
+    /// </summary>
     public RankingSaver rankingSaver;
+    /// <summary>
+    /// Si se esta mostrando el ranking o no
+    /// </summary>
     private bool rankingShow;
     #endregion
 
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Se busca el objeto gamecontroler el ranking saver y se establece la pausa y el mostrado de ranking a false
+    /// se ocultan los paneles de pausa y de ranking
+    /// </summary>
     void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
@@ -29,7 +56,11 @@ public class PausaController : MonoBehaviour
         rankingSaver = GameObject.Find("Ranking_Saver").GetComponent<RankingSaver>();
     }
 
-    
+    /// <summary>
+    /// Si se pulsa ESC y no esta pausado se pausa y si no se continua
+    /// Si se pulsa tab y no esta pausado ni mostrado el ranking muestra el ranking,
+    /// en caso contrario oculta el ranking
+    /// </summary>
     void Update()
     {
         //si pulsas escape
@@ -37,13 +68,9 @@ public class PausaController : MonoBehaviour
         {
             //si el juego esta pausado
             if (gamePaused)
-            {
                 ResumeGame();
-            }
             else
-            {
                 PauseGame();
-            }
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -108,6 +135,9 @@ public class PausaController : MonoBehaviour
         ResumeGame();
     }
 
+    /// <summary>
+    /// Carga el ranking desde el fichero y lo muestra
+    /// </summary>
     public void ShowRanking()
     {
         rankingText.SetText(rankingSaver.ShowLevelRank(SceneManager.GetActiveScene().name, 15));

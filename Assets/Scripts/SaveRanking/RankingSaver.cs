@@ -7,11 +7,28 @@ using System.IO;
 
 public class RankingSaver : MonoBehaviour
 {
+    #region variables
+    /// <summary>
+    /// ruta del fichero
+    /// </summary>
     private string fileRoute;
+    /// <summary>
+    /// referencia al objeto rankingSaver que no se elimina
+    /// </summary>
     public static RankingSaver rankingSaver;
+    /// <summary>
+    /// Datos a guardar en el fichero
+    /// </summary>
     private Dats rankingDats;
+    /// <summary>
+    /// nombre del jugador
+    /// </summary>
     private string playerName;
+    /// <summary>
+    /// puntuacion actual
+    /// </summary>
     private int points;
+    #endregion
 
     /// <summary>
     /// En el awake inicializamos la ruta del archivo y si ya existe un gameObject con el componente rankingSaver eliminamos este si no establecemos que no se borre
@@ -176,16 +193,21 @@ public class RankingSaver : MonoBehaviour
     /// <param name="max">tiempo maximo permitido</param>
     public void setPoints(float time, float max)
     {
-        float result = time - max;
+        float result = max - time;
         if (time > max)
             points = 0;
         else
             points = (int)result;
     }
 
+    /// <summary>
+    /// Guarda el ranking de la partida actual en el fichero
+    /// </summary>
+    /// <param name="levelName">Nombre de la escena</param>
     public void saveCurrentRank(string levelName)
     {
         rankingDats.AddRankingLine(levelName + "|" + points + "|" + playerName);
+        Save();
     }
 
 
@@ -200,7 +222,7 @@ class Dats
     /// <summary>
     /// formato de cada linea 
     /// LEVELNAME|XXXX|NICK
-    /// Siendo LEVELNAME el nombre del nivel NICK el nomrbe del jugador y X la puntuación
+    /// Siendo LEVELNAME el nombre del nivel NICK el nomrbe del jugador y XXXX la puntuación
     /// </summary>
     private List<string> rankingLines;
 
@@ -339,6 +361,29 @@ class Dats
                 rankList += rankOrder + ".- " + subs[2] + " - " + subs[1] + "\n";
                 rankOrder++;
             }
+        }
+
+        return rankList;
+    }
+
+    /// <summary>
+    /// Muestra todo el ranking ordenado por niveles y puntuacion
+    /// </summary>
+    /// <returns>ranking global</returns>
+    public override string ToString()
+    {
+        ShortList();
+        String rankList = "";
+        int rankOrder = 1;
+
+        foreach (string line in rankingLines)
+        {
+
+            string[] subs = line.Split('|');
+            
+                rankList += rankOrder + ".- " + subs[2] + " - " + subs[1] + subs[0]+"Level" + "\n";
+                rankOrder++;
+            
         }
 
         return rankList;
