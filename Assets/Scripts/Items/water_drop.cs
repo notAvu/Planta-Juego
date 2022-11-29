@@ -13,7 +13,7 @@ public class water_drop: MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player")) {
 
-            collision.gameObject.GetComponent<PlayerController>().AñadirVida(20f);
+            collision.gameObject.GetComponent<PlayerController>().AnyadirVida(20f);
             Destroy(gameObject);
         }
     }

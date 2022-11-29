@@ -11,7 +11,7 @@ public class Light_zone: MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            jugador.gameObject.GetComponent<PlayerController>().AñadirVida(velocidadRegeneracion);
+            jugador.gameObject.GetComponent<PlayerController>().AnyadirVida(velocidadRegeneracion);
         }
     }
 }

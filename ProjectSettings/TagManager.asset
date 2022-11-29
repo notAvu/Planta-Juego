@@ -11,6 +11,8 @@ TagManager:
   - Hiedra
   - Enemy
   - Salida
+  - Lux
+  - Water
   layers:
   - Default
   - TransparentFX

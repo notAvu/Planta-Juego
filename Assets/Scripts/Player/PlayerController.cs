@@ -43,12 +43,15 @@ public class PlayerController : MonoBehaviour
 
     #region Metodos publicos
 
-    public void AñadirVida(float vida)
+    public void AnyadirVida(float vida)
     {
-
-        if (VidaActual < VidaTotal)
+        if (VidaActual < (VidaTotal+vida))
         {
             VidaActual += vida;
+        }
+        else
+        {
+            VidaActual = VidaTotal;
         }
     }
 
