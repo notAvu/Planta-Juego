@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         ableToMove = true;
-        menuFinal = GameObject.Find("GameController").GetComponent<MenuFinal>();
+        //menuFinal = GameObject.Find("GameController").GetComponent<MenuFinal>();
         velocidad = 10f;
         fuerzaSalto = 6.8f;
         rigid = GetComponent<Rigidbody2D>();

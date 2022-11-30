@@ -123,7 +123,7 @@ MonoBehaviour:
   platformPrefab: {fileID: 8868912474436450139, guid: a1fbcba4d1236994ab0074e8f3dcd518, type: 3}
   groundTag: Ground
   playerTag: Player
-  enemyTag: 
+  enemyTag: Enemy
 --- !u!58 &6711822210977938407
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlatformProjectile : MonoBehaviour
 {
-    //Se asociaria al prefab de la Semilla que crear� la plataforma
     #region Atributos
     public GameObject platformPrefab;
-    private float offset;
     [SerializeField]
     private string groundTag;
     [SerializeField]
@@ -21,7 +19,15 @@ public class PlatformProjectile : MonoBehaviour
     void Awake()
     {
         Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag(playerTag).GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
-        offset = platformPrefab.transform.localScale.y / 2;
+        SetIgnoreTag("Vines");
+    }
+    private void SetIgnoreTag(string tagToIgnore)
+    {
+        GameObject[] vines= GameObject.FindGameObjectsWithTag(tagToIgnore);
+        foreach(GameObject vine in vines)
+        {
+            Physics2D.IgnoreCollision(vine.GetComponent<Collider2D>(), this.gameObject.GetComponent<Collider2D>());
+        }
     }
 
     #endregion
@@ -36,24 +42,25 @@ public class PlatformProjectile : MonoBehaviour
     /// </summary>
     /// <param name="vertical">indica si la plataforma se genera en vertical (como una columna) o en horizontal</param>
     /// <param name="position">Punto en el que se genera la plataforma</param>
-    private void CrearPlataforma(bool vertical, Vector3 position)
+    private void CreatePlatform(bool vertical, Vector3 position)
     {
         var velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
         float yDirection = -Mathf.Sign(velocity.y);
         float xDirection = -Mathf.Sign(velocity.x);
 
         Vector2 platformPosition = vertical ?
-            new Vector2(position.x + offset * xDirection, position.y) :
-        new Vector2(position.x, position.y + offset * yDirection);
+            new Vector2(position.x /*+ offset * xDirection*/, position.y) :
+        new Vector2(position.x, position.y  /*+offset * yDirection*/);
 
         //GameObject newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
-        GameObject newPlatform;
+
         if (vertical)
         {
-            newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
+            GameObject newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
         }
-        Destroy(gameObject);
+        
     }
+
     /// <summary>
     /// Reconoce las colisiones con las que puede impactar el objeto en la posicion indicada en un radio determinado y genera una plataforma en la posicion de impacto
     /// </summary>
@@ -70,12 +77,20 @@ public class PlatformProjectile : MonoBehaviour
         {
             if (hit.CompareTag(groundTag) && !hit.gameObject.name.Contains(platformPrefab.name))
             {
-                Vector3 collisionPoint = hit.ClosestPoint(position);
-                float angle = Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
-                bool horizontal = (int)angle == 0 || (int)angle == 180;
+                Vector3 collisionPoint = hit.ClosestPoint(position); //pilo el punto de colision mas cercano desde la posicion del objeto 
+                float angle = Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right)); // el angulo entre el vector que se forma desde la posicion al punto de
+                                                                                                  // colision con respecto a el eje X (1,0)
+                bool horizontal = (int)angle == 0 || (int)angle == 180;//Hago el cast a int pq el metodo de aproximar iba regu y la diferencia es de tan pocos decimales que asi
+                                                                       //se aproxima correctamente. Si me da tiempo quiero buscar la forma de hacer una aptroximacion bien
+                if (horizontal)// si pega en horizontal crea la plataforma desde el punto de colision calculado y se destruye la semilla
+                {
 
-                CrearPlataforma(horizontal, hit.ClosestPoint(position));
-            }else if (hit.CompareTag("Enemy"))
+                    CreatePlatform(horizontal, hit.ClosestPoint(position));
+                }
+                Destroy(gameObject);
+            }
+            else if (hit.CompareTag("Enemy") || (hit.CompareTag(groundTag) && (hit.gameObject.name.Contains(platformPrefab.name))))
+                //todo: cambiar a que no se destruya con las tags que debe ignorar
             {
                 Destroy(gameObject);
             }

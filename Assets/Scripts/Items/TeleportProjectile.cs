@@ -18,13 +18,22 @@ public class TeleportProjectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag(playerTag);
         playerYSizeOffset = (player.transform.localScale.y / 2) - 0.15f;
-        
+
+        SetIgnoreTag("Vines");
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 
     }
     private void FixedUpdate()
     {
         PredictCollisionPoint(gameObject.transform.position, 0.2f);
+    }
+    private void SetIgnoreTag(string tagToIgnore)
+    {
+        GameObject[] vines = GameObject.FindGameObjectsWithTag(tagToIgnore);
+        foreach (GameObject vine in vines)
+        {
+            Physics2D.IgnoreCollision(vine.GetComponent<Collider2D>(), this.gameObject.GetComponent<Collider2D>());
+        }
     }
     /// <summary>
     /// Reconoce las colisiones con las que puede impactar el objeto en la posicion indicada en un radio determinado
