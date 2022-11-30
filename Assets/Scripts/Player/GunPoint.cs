@@ -5,9 +5,9 @@ using UnityEngine;
 public class GunPoint : MonoBehaviour
 {
     #region referencias de escena
-    //[SerializeField]
+    
     private Camera mainCamera;
-
+    public SpriteRenderer sprite;
     [SerializeField]
     private Transform gunHolder;
     [SerializeField]
@@ -24,6 +24,8 @@ public class GunPoint : MonoBehaviour
     private GameObject[] availablePrefabs;
     private int selectedPrefabIndex;
 
+    public int availableSeeds;
+
     private GameObject activeProjectile;
 
     private bool chargingProjectile;
@@ -34,8 +36,8 @@ public class GunPoint : MonoBehaviour
     List<string> tagsToIgnore;
 
     [SerializeField]
-    private float launchForce; //Valor de ejemplo 500
-    private Vector3 distanceVector; //vecrtor de la distancia entre el jugador y la posicion del raton
+    private float launchForce; 
+    private Vector3 distanceVector; //vector de la distancia entre el jugador y la posicion del raton
     #endregion
     #region eventos de Unity
     private void Awake()
@@ -50,11 +52,10 @@ public class GunPoint : MonoBehaviour
         projectileOneAxisVal = Input.GetAxisRaw("Fire1");
         projectileTwoAxisVal = Input.GetAxisRaw("Fire2");
         RotateGun(mousePosition);
-
     }
     private void FixedUpdate()
     {
-        if (projectileOneAxisVal > 0 && activeProjectile == null)
+        if (projectileOneAxisVal > 0 && activeProjectile == null && availableSeeds > 0)
         {
             ChargeProjectile(0);
         }
@@ -94,6 +95,10 @@ public class GunPoint : MonoBehaviour
     private void LaunchProjectile()
     {
         activeProjectile = Instantiate(availablePrefabs[selectedPrefabIndex], gameObject.transform.position, Quaternion.identity);
+        if (selectedPrefabIndex == 0)
+        {
+            availableSeeds--;
+        }
         Vector2 direction = distanceVector.normalized;
         activeProjectile.GetComponent<Rigidbody2D>().AddForce(direction * launchForce);
         chargingProjectile = false;
@@ -157,7 +162,6 @@ public class GunPoint : MonoBehaviour
         if (index < availablePrefabs.Length)
         {
             selectedPrefabIndex = index;
-
             chargingProjectile = true;
             DrawProjectileTrajectory();
         }

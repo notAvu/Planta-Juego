@@ -11,6 +11,11 @@ TagManager:
   - Hiedra
   - Enemy
   - Salida
+<<<<<<< HEAD
+=======
+  - Lux
+  - Water
+>>>>>>> integracion
   layers:
   - Default
   - TransparentFX

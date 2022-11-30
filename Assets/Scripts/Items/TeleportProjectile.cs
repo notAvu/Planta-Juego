@@ -18,13 +18,26 @@ public class TeleportProjectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag(playerTag);
         playerYSizeOffset = (player.transform.localScale.y / 2) - 0.15f;
-        //GetComponent<Rigidbody2D>().
+
+        SetIgnoreTag("Vines");
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 
     }
     private void FixedUpdate()
     {
         PredictCollisionPoint(gameObject.transform.position, 0.2f);
+    }
+    /// <summary>
+    /// Hace que el collider de este objeto ignore colisiones con todos los objetos de la escena con el tag <paramref name="tagToIgnore"/>
+    /// </summary>
+    /// <param name="tagToIgnore">el tag que llevan los colliders a evitar</param>
+    private void SetIgnoreTag(string tagToIgnore)
+    {
+        GameObject[] vines = GameObject.FindGameObjectsWithTag(tagToIgnore);
+        foreach (GameObject vine in vines)
+        {
+            Physics2D.IgnoreCollision(vine.GetComponent<Collider2D>(), this.gameObject.GetComponent<Collider2D>());
+        }
     }
     /// <summary>
     /// Reconoce las colisiones con las que puede impactar el objeto en la posicion indicada en un radio determinado
@@ -48,15 +61,16 @@ public class TeleportProjectile : MonoBehaviour
                     Vector3 collisionVector = transform.position - collisionPoint;
 
                     int angle = (int)Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
-                    bool horizontalCollision = (angle == 0 || angle == 180) && collisionVector.magnitude>0.0001;
-                    if (hit.CompareTag(groundTag) )
+                    bool horizontalCollision = (angle == 0 || angle == 180) && collisionVector.magnitude > 0.0001;
+                    if (hit.CompareTag(groundTag))
                     {
                         if (!horizontalCollision)
-                            player.transform.position = new Vector2(transform.position.x, transform.position.y + playerYSizeOffset);
-
+                        {
+                            player.GetComponent<PlayerController>().TeleportTo(new Vector2(transform.position.x, transform.position.y + playerYSizeOffset));
+                        }
                         Destroy(gameObject);
                     }
-                    else if(hit.CompareTag(enemyTag))
+                    else if (hit.CompareTag(enemyTag))
                     {
                         Destroy(gameObject);
                     }
@@ -64,5 +78,4 @@ public class TeleportProjectile : MonoBehaviour
             }
         }
     }
-
 }
