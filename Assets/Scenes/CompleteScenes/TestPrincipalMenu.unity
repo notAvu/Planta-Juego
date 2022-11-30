@@ -564,7 +564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -332, y: -212}
+  m_AnchoredPosition: {x: -263, y: -259}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &143578332
@@ -1197,7 +1197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 530221349}
-  levelSceneName: SampleScene
+  levelSceneName: level1
+  rankingSaver: {fileID: 0}
+  rankingText: {fileID: 760216340}
 --- !u!114 &516562962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,6 +1416,7 @@ MonoBehaviour:
   levelSelectorPanel: {fileID: 804955859}
   creditsPanel: {fileID: 266529713}
   txtPlayerName: {fileID: 1371937538}
+  rankingSaver: {fileID: 0}
 --- !u!1 &573540609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,7 +1924,7 @@ GameObject:
   - component: {fileID: 760216341}
   - component: {fileID: 760216340}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TextRanking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1944,8 +1947,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 257, y: 44}
-  m_SizeDelta: {x: 272.9014, y: 153.4182}
+  m_AnchoredPosition: {x: 265.6659, y: -53.145}
+  m_SizeDelta: {x: 290.2332, y: 347.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &760216340
 MonoBehaviour:
@@ -1967,11 +1970,35 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ranking
-
-    1- adgsd
+  m_text: '1- adgsd
 
     2 - adg
+
+    3.- 6554
+
+    4.- dsggh
+
+    5.-sadsdh
+
+    6.-sdhdhf
+
+    7.-dsgh
+
+    8.-sdhdh
+
+    9.-sdghdh
+
+    10.-sdhgdfh
+
+    11.-sdghsdfh
+
+    12.-sdfh
+
+    13.-sdfhh
+
+    14.-gsdhgh
+
+    15.-sdfha
 
 '
   m_isRightToLeft: 0
@@ -2202,7 +2229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &804955860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2286,7 +2313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &893705348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2539,6 +2566,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 530221349}
   levelSceneName: EscenaPlantilla
+  rankingSaver: {fileID: 0}
+  rankingText: {fileID: 760216340}
 --- !u!114 &1029494522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3287,7 +3316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 263, y: -149}
+  m_AnchoredPosition: {x: 263, y: -260}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204225134
@@ -3652,7 +3681,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 530221349}
-  levelSceneName: SampleScene
+  levelSceneName: level3
+  rankingSaver: {fileID: 0}
+  rankingText: {fileID: 760216340}
 --- !u!114 &1368958644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4391,6 +4422,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865186762}
   m_CullTransparentMesh: 1
+--- !u!1 &1926111581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1926111583}
+  - component: {fileID: 1926111582}
+  m_Layer: 0
+  m_Name: Ranking_Saver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1926111582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926111581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7a86d234217854289ea5f121766c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1926111583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926111581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1471.9554, y: 692.50964, z: -8.813592}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2101347571
 GameObject:
   m_ObjectHideFlags: 0
