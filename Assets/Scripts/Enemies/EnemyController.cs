@@ -97,11 +97,11 @@ public class EnemyController : MonoBehaviour
     {
         if (posicionInicial.x < posicionDestino.x)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
         else
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
     }
     #endregion
