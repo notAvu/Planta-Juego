@@ -146,4 +146,10 @@ public class HUD_Controller : MonoBehaviour
         seed.GetComponent<Image>().sprite = sprite;
     }
     #endregion
+
+    public float getTime()
+    {
+        return time;
+    }
+
 }
