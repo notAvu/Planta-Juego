@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
 
     #region Atributos
-
     private float velocidad, fuerzaSalto;
     private Rigidbody2D rigid;
     private Collider2D capCollider;
@@ -20,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public string tagCuervo;
     public string tagSalida;
     private MenuFinal menuFinal;
+    public AudioClip jumpSound,cuervoSound;
 
     bool ableToMove;
     //public Animator animator;
@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && EstaEnSuelo())
         {
             rigid.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+            SoundManager.SharedInstance.PlaySound(jumpSound);
         }
         animador.SetBool("isJumped", !EstaEnSuelo());
     }
@@ -157,6 +158,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag(tagCuervo))
         {
             //tras colisionar con el cuervo se reinicia el nivel.
+            SoundManager.SharedInstance.PlaySound(cuervoSound);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         }

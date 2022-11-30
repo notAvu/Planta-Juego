@@ -7,6 +7,7 @@ public class PlatformProjectile : MonoBehaviour
     //Se asociaria al prefab de la Semilla que crear� la plataforma
     #region Atributos
     public GameObject platformPrefab;
+    public AudioClip platformSound;
     private float offset;
     [SerializeField]
     private string groundTag;
@@ -52,6 +53,7 @@ public class PlatformProjectile : MonoBehaviour
         {
             newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
             newPlatform.transform.Rotate(0, 0, 90f);
+            SoundManager.SharedInstance.PlaySound(platformSound);
         }
         Destroy(gameObject);
     }

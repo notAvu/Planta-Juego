@@ -137,5 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 8868912474436450139, guid: a1fbcba4d1236994ab0074e8f3dcd518, type: 3}
+  platformSound: {fileID: 8300000, guid: fc2cf21a37f82c34c87ce35e9ca681f8, type: 3}
   groundTag: Ground
   playerTag: Player
+  enemyTag: 
