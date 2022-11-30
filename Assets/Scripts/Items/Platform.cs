@@ -15,6 +15,7 @@ public class Platform : MonoBehaviour
         activePlatform = gameObject;
         StartCoroutine(nameof(DestructionTimer));
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
