@@ -27,6 +27,10 @@ public class TeleportProjectile : MonoBehaviour
     {
         PredictCollisionPoint(gameObject.transform.position, 0.2f);
     }
+    /// <summary>
+    /// Hace que el collider de este objeto ignore colisiones con todos los objetos de la escena con el tag <paramref name="tagToIgnore"/>
+    /// </summary>
+    /// <param name="tagToIgnore">el tag que llevan los colliders a evitar</param>
     private void SetIgnoreTag(string tagToIgnore)
     {
         GameObject[] vines = GameObject.FindGameObjectsWithTag(tagToIgnore);

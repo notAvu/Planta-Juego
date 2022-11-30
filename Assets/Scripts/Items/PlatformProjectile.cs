@@ -21,6 +21,10 @@ public class PlatformProjectile : MonoBehaviour
         Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag(playerTag).GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         SetIgnoreTag("Vines");
     }
+    /// <summary>
+    /// Hace que el collider de este objeto ignore colisiones con todos los objetos de la escena con el tag <paramref name="tagToIgnore"/>
+    /// </summary>
+    /// <param name="tagToIgnore">el tag que llevan los colliders a evitar</param>
     private void SetIgnoreTag(string tagToIgnore)
     {
         GameObject[] vines = GameObject.FindGameObjectsWithTag(tagToIgnore);
@@ -79,12 +83,12 @@ public class PlatformProjectile : MonoBehaviour
         {
             if (hit.CompareTag(groundTag) && !hit.gameObject.name.Contains(platformPrefab.name))
             {
-                Vector3 collisionPoint = hit.ClosestPoint(position); //pilo el punto de colision mas cercano desde la posicion del objeto 
-                float angle = Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right)); // el angulo entre el vector que se forma desde la posicion al punto de
-                                                                                                  // colision con respecto a el eje X (1,0)
-                bool horizontal = (int)angle == 0 || (int)angle == 180;//Hago el cast a int pq el metodo de aproximar iba regu y la diferencia es de tan pocos decimales que asi
-                                                                       //se aproxima correctamente. Si me da tiempo quiero buscar la forma de hacer una aptroximacion bien
-                if (horizontal)// si pega en horizontal crea la plataforma desde el punto de colision calculado y se destruye la semilla
+                Vector3 collisionPoint = hit.ClosestPoint(position);
+                float angle = Mathf.Abs(Vector3.Angle(position - collisionPoint, Vector2.right));
+
+                bool horizontal = (int)angle == 0 || (int)angle == 180;
+
+                if (horizontal)
                 {
 
                     CreatePlatform(horizontal, hit.ClosestPoint(position));

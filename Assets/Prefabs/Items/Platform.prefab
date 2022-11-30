@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeSpan: 8
   origin: {fileID: 6362194638503098478}
+  growthDuration: 0.2
 --- !u!61 &5465797983550777323
 BoxCollider2D:
   m_ObjectHideFlags: 0
