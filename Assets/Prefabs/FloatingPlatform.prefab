@@ -131,7 +131,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1557222074780317391
@@ -146,3 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606691d705299e840b2cbea043d2e34b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DuracionPlataforma: 0.25
+  TiempoDestruir: 5
+  gamecontroler: {fileID: 6846390085878393033, guid: 82b56678410686e48890189a5c48cf1c, type: 3}

@@ -10,7 +10,8 @@ public class FloatingPlatform: MonoBehaviour
     private BoxCollider2D BoxC2D;
     public float DuracionPlataforma;
     private bool SobrePlataforma;
-
+    public  float TiempoDestruir;
+    public GameObject gamecontroler;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +74,7 @@ public class FloatingPlatform: MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 2;
        
-        Destroy(gameObject, 5);
+        Destroy(gameObject, TiempoDestruir);
 
     }
  
