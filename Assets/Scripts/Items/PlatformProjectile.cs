@@ -23,8 +23,8 @@ public class PlatformProjectile : MonoBehaviour
     }
     private void SetIgnoreTag(string tagToIgnore)
     {
-        GameObject[] vines= GameObject.FindGameObjectsWithTag(tagToIgnore);
-        foreach(GameObject vine in vines)
+        GameObject[] vines = GameObject.FindGameObjectsWithTag(tagToIgnore);
+        foreach (GameObject vine in vines)
         {
             Physics2D.IgnoreCollision(vine.GetComponent<Collider2D>(), this.gameObject.GetComponent<Collider2D>());
         }
@@ -46,19 +46,21 @@ public class PlatformProjectile : MonoBehaviour
     {
         var velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
         float yDirection = -Mathf.Sign(velocity.y);
-        float xDirection = -Mathf.Sign(velocity.x);
+        float xDirection = Mathf.Sign(velocity.x);
 
         Vector2 platformPosition = vertical ?
             new Vector2(position.x /*+ offset * xDirection*/, position.y) :
         new Vector2(position.x, position.y  /*+offset * yDirection*/);
+        float platformRotation = xDirection < 0 ? 0 : 180;
 
         //GameObject newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
 
         if (vertical)
         {
             GameObject newPlatform = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
+            newPlatform.transform.Rotate(new Vector3(0, 0, platformRotation));
         }
-        
+
     }
 
     /// <summary>
@@ -90,7 +92,7 @@ public class PlatformProjectile : MonoBehaviour
                 Destroy(gameObject);
             }
             else if (hit.CompareTag("Enemy") || (hit.CompareTag(groundTag) && (hit.gameObject.name.Contains(platformPrefab.name))))
-                //todo: cambiar a que no se destruya con las tags que debe ignorar
+            //todo: cambiar a que no se destruya con las tags que debe ignorar
             {
                 Destroy(gameObject);
             }
